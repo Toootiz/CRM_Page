@@ -30,7 +30,7 @@ export const PostEdit = () => (
     </Edit>
 );
 
-export const CreatePost = () => {
+export const CreatePost = () => (
     <Create>
         <SimpleForm>
             <ReferenceInput source = "userId" reference = "users"/>
@@ -38,5 +38,4 @@ export const CreatePost = () => {
             <TextInput source = "body" multiline rows = {5}/>
         </SimpleForm>
     </Create>
-    return null;
-};
+);
