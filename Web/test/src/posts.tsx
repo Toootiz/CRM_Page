@@ -1,5 +1,9 @@
 import {useMediaQuery, Theme} from '@mui/material';
-import {List, SimpleList, Datagrid, TextField, EmailField, ReferenceField, EditButton, ReferenceInput, SimpleForm, TextInput, Edit, Create} from 'react-admin';
+import {List, SimpleList, Datagrid, TextField, 
+EmailField, ReferenceField, EditButton, ReferenceInput, 
+SimpleForm, TextInput, Edit, Create, useResetStore, Button, Toolbar, SaveButton} from 'react-admin';
+import { useFormContext } from 'react-hook-form';
+
 
 
 const postFilters = [
@@ -7,16 +11,28 @@ const postFilters = [
     <ReferenceInput source = "userId" label = "User" reference = "users" />,
 ];
 
+const ClearValuesButton = () => {
+    const form = useFormContext(); 
+    const handleClear = () => {
+        form.reset(); 
+    };
+    return <Button label="Limpiar valores" onClick={handleClear} />;
+};
+
+
 export const PostList= () => (
-    <List filters = {postFilters}>
+    <>
+    
+    <List filters={postFilters}>
+    
         <Datagrid>
-            <TextField source = "id"/>
-            <ReferenceField source = "userId" reference = "users"/>
-            <TextField source = "title"/>
-            <TextField source = "body"/>
-            <EditButton/>
+            <TextField source="id" />
+            <ReferenceField source="userId" reference="users" />
+            <TextField source="title" />
+            <TextField source="body" />
+            <EditButton />
         </Datagrid>
-    </List>
+    </List></>
 );
 
 export const PostEdit = () => (
@@ -30,12 +46,25 @@ export const PostEdit = () => (
     </Edit>
 );
 
-export const CreatePost = () => (
-        <Create>
-            <SimpleForm>
+export const CreatePost: React.FC = (props) => (
+        <Create {...props}>
+
+            <SimpleForm toolbar={<CustomToolbar />}>
                 <ReferenceInput source = "userId" reference = "users"/>
                 <TextInput source = "title"/>
-                <TextInput source = "body" multiline rows = {5}/>
+                <TextInput source = "body" multiline rows = {5} />
+                
             </SimpleForm>
         </Create>
 );
+
+const CustomToolbar = (props: any) => (
+    <Toolbar {...props}>
+        <SaveButton />
+        <ClearValuesButton /> {ClearValuesButton}
+    </Toolbar>
+);
+
+
+
+ 
