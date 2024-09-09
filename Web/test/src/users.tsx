@@ -1,5 +1,5 @@
 import {useMediaQuery, Theme} from '@mui/material';
-import {List, SimpleList, Datagrid, TextField, EmailField, Edit, SimpleForm, TextInput, Create, required,regex, useUnique} from 'react-admin';
+import {List, SimpleList, Datagrid, TextField, EmailField, Edit, SimpleForm, TextInput, Create, required,regex, useUnique,useEditController, Title} from 'react-admin';
 
 const userFilters = [
     <TextInput source = "q" label = "Search" alwaysOn />,
@@ -20,20 +20,26 @@ export const UserList= () => (
     </List>
 );
 
-export const UserEdit = () => (
-    <Edit>
-        <SimpleForm>
-            <TextInput disabled source = "id" InputProps = {{disabled: true}}/>
-            <TextInput source = "name"/>
-            <TextInput source = "username"/>
-            <TextInput source = "email"/>
-            <TextInput source = "address.city"/>
-            <TextInput source = "phone"/>
-            <TextInput source = "website"/>
-            <TextInput source = "company.name"/>
-        </SimpleForm>
-    </Edit>
-);
+export const UserEdit = () => {
+    const {save, isPending} = useEditController();
+    if (isPending) return null;
+    return(
+        <div>
+            <Title title= "Editar Usuario"/>
+                <SimpleForm onSubmit={save}>
+                    <TextInput disabled source = "id" InputProps = {{disabled: true}}/>
+                    <TextInput source = "name"/>
+                    <TextInput source = "username"/>
+                    <TextInput source = "email"/>
+                    <TextInput source = "address.city"/>
+                    <TextInput source = "phone"/>
+                    <TextInput source = "website"/>
+                    <TextInput source = "company.name"/>
+                </SimpleForm>
+        </div>
+        
+    );
+};
 
 export const UserCreate = () => {
     const unique = useUnique();
