@@ -1,6 +1,6 @@
 import {
   Admin,
-  Resource,
+  Resource, defaultTheme, useTheme
 } from "react-admin";
 import { Layout } from "./Layout";
 import { dataProvider } from "./dataProvider";
@@ -23,6 +23,7 @@ import { PhotosCreate } from "./photos";
 import { TodosList } from "./todos";
 import { TodosEdit } from "./todos";
 import { TodosCreate } from "./todos";
+
 
 
 export const App = () => (

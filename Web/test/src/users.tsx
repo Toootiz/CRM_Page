@@ -1,9 +1,11 @@
 import {useMediaQuery, Theme} from '@mui/material';
-import {List, SimpleList, Datagrid, TextField, EmailField, Edit, SimpleForm, TextInput, Create, required,regex, useUnique,useEditController, Title} from 'react-admin';
+import {List, SimpleList, Datagrid, TextField, EmailField, SimpleForm, TextInput, Create, required,regex, useUnique,useEditController, Edit, EditButton, defaultTheme, useTheme, Button, Title} from 'react-admin';
+
 
 const userFilters = [
     <TextInput source = "q" label = "Search" alwaysOn />,
 ];
+
 
 export const UserList= () => (
     <List filters = {userFilters}>
@@ -16,7 +18,9 @@ export const UserList= () => (
             <TextField source = "phone"/>
             <TextField source = "website"/>
             <TextField source = "company.name"/>
+            <EditButton/>
         </Datagrid>
+        
     </List>
 );
 
@@ -25,7 +29,8 @@ export const UserEdit = () => {
     if (isPending) return null;
     return(
         <div>
-            <Title title= "Editar Usuario"/>
+            <Edit>
+                <Title title= " - Editando Usuario..."/>
                 <SimpleForm onSubmit={save}>
                     <TextInput disabled source = "id" InputProps = {{disabled: true}}/>
                     <TextInput source = "name"/>
@@ -36,6 +41,7 @@ export const UserEdit = () => {
                     <TextInput source = "website"/>
                     <TextInput source = "company.name"/>
                 </SimpleForm>
+            </Edit>
         </div>
         
     );
