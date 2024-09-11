@@ -1,4 +1,4 @@
-# crm
+# frontend
 
 ## Installation
 
