@@ -46,6 +46,10 @@ app.get("/usuarios", async (req, res) => {
 });
 
 //getOne
+app.get("/usuarios/:id", async (req, res) => {
+    let data = await db.collection("usuarios").find({id: Number(req.params.id)}).project({_id: 0}).toArray();
+    res.json(data[0]);
+});
 
 //create
 
