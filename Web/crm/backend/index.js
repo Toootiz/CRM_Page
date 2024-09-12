@@ -54,13 +54,13 @@ app.get("/usuarios/:id", async (req, res) => {
 });
 
 //create usuarios
-app.post("/usuarios/:id", async (req, res) => {
+app.post("/usuarios/", async (req, res) => {
     let addValues = req.body;
     let data = await db.collection("usuarios").find({}).toArray();
     let id = data.length + 1;
     addValues["id"] = id;
     data = await db.collection("usuarios").insertOne(addValues);
-    res.json(data[0]);
+    res.json(data);
 });
 
 //update usuarios
@@ -116,13 +116,13 @@ app.get("/donaciones/:id", async (req, res) => {
 });
 
 //create donaciones
-app.post("/donaciones/:id", async (req, res) => {
+app.post("/donaciones/", async (req, res) => {
     let addValues = req.body;
     let data = await db.collection("donaciones").find({}).toArray();
     let id = data.length + 1;
     addValues["id"] = id;
     data = await db.collection("donaciones").insertOne(addValues);
-    res.json(data[0]);
+    res.json(data);
 });
 
 //update donaciones

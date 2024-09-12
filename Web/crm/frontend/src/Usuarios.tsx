@@ -1,6 +1,6 @@
-import {List, SimpleList, Datagrid, TextField, EmailField, SimpleForm,
+import {List, Datagrid, TextField, EmailField, SimpleForm,
      TextInput, Create, required,regex, useUnique,useEditController, Edit,
-      EditButton, defaultTheme, useTheme, Button, Title} from 'react-admin';
+      EditButton, Title} from 'react-admin';
 
 
 const userFilters = [
@@ -12,9 +12,9 @@ export const UserList= () => (
     <List filters = {userFilters}>
         <Datagrid>
             <TextField source = "id"/>
-            <TextField source = "name"/>
+            <TextField source = "nombre"/>
             <EmailField source = "email"/>
-            <TextField source = "phone"/>
+            <TextField source = "telefono"/>
             <EditButton/>
         </Datagrid>
         
@@ -28,13 +28,13 @@ export const UserEdit = () => {
     return(
         <div>
             <Edit>
-                <Title title= " - Editando Usuario..."/>
+                <Title title= " - Editando Usuario"/>
                 <SimpleForm onSubmit={save}>
                     <TextInput disabled source = "id" InputProps = {{disabled: true}}/>
-                    <TextInput source = "name"/>
+                    <TextInput source = "nombre"/>
                     <TextInput source = "email"
                     validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.'),unique()]}/>
-                    <TextInput source = "phone"/>
+                    <TextInput source = "telefono"/>
                 </SimpleForm>
             </Edit>
         </div>
@@ -48,11 +48,10 @@ export const UserCreate = () => {
     
     <Create>
         <SimpleForm>
-            <TextInput source = "id" validate = {[required()]}/>
-            <TextInput source = "name"/>
+            <TextInput source = "nombre"/>
             <TextInput source = "email" 
             validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.'),unique()]}/>
-            <TextInput source = "phone" validate={unique()}/>
+            <TextInput source = "telefono" validate={unique()}/>
         </SimpleForm>
     </Create>
 )};
