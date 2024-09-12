@@ -70,6 +70,12 @@ app.put("/usuarios/:id", async (req, res) => {
     res.json(data[0]);
 });
 
+//delete usuarios
+app.delete("/usuarios/:id", async (req, res) => {
+    let data = await db.collection("usuarios").deleteOne({id: Number(req.params.id)})
+    res.json(data);
+});
+
 app.listen(3000, () => {
     connectDB();
     console.log("El servidor corre en el puerto 3000");
