@@ -54,6 +54,13 @@ app.get("/usuarios/:id", async (req, res) => {
 //create
 
 //update
+app.put("/usuarios/:id", async (req, res) => {
+    let addValues = req.body;
+    addValues["id"] = Number(req.params.id);
+    let data = await db.collection("usuarios").updateOne({id: addValues["id"]}, {"$set": addValues});
+    data = await db.collection("usuarios").find({id: Number(req.params.id)}).project({_id: 0}).toArray();
+    res.json(data[0]);
+});
 
 //delete
 
