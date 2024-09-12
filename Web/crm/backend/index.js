@@ -17,6 +17,33 @@ async function connectDB() {
 }
 
 //getList, getMany, getManyReference
+app.get("/usuarios", async (req, res) => {
+    if ("_sort" in req.query) { // List
+        let sortBy = req.query._sort;
+        let sortOrder = req.query._order === "ASC" ? 1 : -1;
+        let start = Number(req.query._start);
+        let end = Number(req.query._end);
+        let sorter = {};
+        sorter[sortBy] = sortOrder;
+        let data = await db.collection("usuarios").find().sort(sorter).project({_id: 0}).toArray();
+        res.set("Access-Control-Expose-Headers", "X-Total-Count");
+        res.set("X-Total-Count", data.length);
+        data = data.slice(start, end);
+        res.json(data);
+    } else if ("id" in req.query) { // Many
+        let data = [];
+        for (let index = 0; index < req.query.id.length; index++) {
+            let dbData = await db.collection("usuarios").find({id: Number(req.query.id[index])}).project({_id: 0}).toArray();
+            data = data.concat(dbData);
+        }
+        res.json(data);
+    } else { // Reference
+        let data = await db.collection("usuarios").find(req.query).project({_id: 0}).toArray();
+        res.set("Access-Control-Expose-Headers", "X-Total-Count");
+        res.set("X-Total-Count", data.length);
+        res.json(data);
+    }
+});
 
 //getOne
 
