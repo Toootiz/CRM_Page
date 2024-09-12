@@ -16,7 +16,7 @@ async function connectDB() {
     console.log("Conectado a la base de datos");
 }
 
-//getList, getMany, getManyReference
+//getList, getMany, getManyReference usuarios
 app.get("/usuarios", async (req, res) => {
     if ("_sort" in req.query) { // List
         let sortBy = req.query._sort;
@@ -45,15 +45,23 @@ app.get("/usuarios", async (req, res) => {
     }
 });
 
-//getOne
+//getOne usuarios
 app.get("/usuarios/:id", async (req, res) => {
     let data = await db.collection("usuarios").find({id: Number(req.params.id)}).project({_id: 0}).toArray();
     res.json(data[0]);
 });
 
-//create
+//create usuarios
+app.post("/usuarios/:id", async (req, res) => {
+    let addValues = req.body;
+    let data = await db.collection("usuarios").find({}).toArray();
+    let id = data.length + 1;
+    addValues["id"] = id;
+    data = await db.collection("usuarios").insertOne(addValues);
+    res.json(data[0]);
+});
 
-//update
+//update usuarios
 app.put("/usuarios/:id", async (req, res) => {
     let addValues = req.body;
     addValues["id"] = Number(req.params.id);
@@ -61,9 +69,6 @@ app.put("/usuarios/:id", async (req, res) => {
     data = await db.collection("usuarios").find({id: Number(req.params.id)}).project({_id: 0}).toArray();
     res.json(data[0]);
 });
-
-//delete
-
 
 app.listen(3000, () => {
     connectDB();
