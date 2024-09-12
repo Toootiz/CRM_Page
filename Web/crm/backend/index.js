@@ -109,13 +109,13 @@ app.get("/donaciones", async (req, res) => {
     }
 });
 
-//getOne usuarios
+//getOne donaciones
 app.get("/donaciones/:id", async (req, res) => {
     let data = await db.collection("donaciones").find({id: Number(req.params.id)}).project({_id: 0}).toArray();
     res.json(data[0]);
 });
 
-//create usuarios
+//create donaciones
 app.post("/donaciones/:id", async (req, res) => {
     let addValues = req.body;
     let data = await db.collection("donaciones").find({}).toArray();
@@ -125,7 +125,7 @@ app.post("/donaciones/:id", async (req, res) => {
     res.json(data[0]);
 });
 
-//update usuarios
+//update donaciones
 app.put("/donaciones/:id", async (req, res) => {
     let addValues = req.body;
     addValues["id"] = Number(req.params.id);
@@ -134,7 +134,7 @@ app.put("/donaciones/:id", async (req, res) => {
     res.json(data[0]);
 });
 
-//delete usuarios
+//delete donaciones
 app.delete("/donaciones/:id", async (req, res) => {
     let data = await db.collection("donaciones").deleteOne({id: Number(req.params.id)})
     res.json(data);
