@@ -3,4 +3,4 @@ Antes de empezar recuerden poner dentro de ambas carpetas "npm install" para que
 
 
 # Instrucciones para la base de daton
-Para cargar la base de datos en su instancia local deberán correr el siguiente código mongorestore --db <nombre_bd_destino> <ruta del archivo de la base de datos volcada en el repo>
+Para cargar la base de datos en su instancia local deberán correr el siguiente código en mongosh "mongorestore --db <nombre_bd_destino> <ruta del archivo de la base de datos volcada en el repo>"
