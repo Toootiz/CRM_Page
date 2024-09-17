@@ -2,6 +2,9 @@ const express = require("express");
 const MongoClient = require("mongodb").MongoClient;
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { UserSchema, hashPassword, comparePassword } = require('./userController');
 
 let db;
 const app = express();
@@ -15,6 +18,40 @@ async function connectDB() {
     db = client.db('SandersDB');
     console.log("Conectado a la base de datos");
 }
+
+//Registro de usuario
+app.post("/auth/register", async (req, res) => {
+    const { username, password } = req.body;
+    try {
+        const hashedPassword = await hashPassword(password);
+        const user = { username, password: hashedPassword };
+        await db.collection("usuarios").insertOne(user);
+        res.status(201).send('Usuario registrado');
+    } catch (error) {
+        res.status(500).send('Error en el servidor');
+    }
+});
+
+//Login de usuario
+app.post("/auth/login", async (req, res) => {
+    const { username, password } = req.body;
+    try {
+        const user = await db.collection("usuarios").findOne({ username });
+        if (!user) {
+            return res.status(404).send('Usuario no encontrado');
+        }
+
+        const isValid = await comparePassword(password, user.password);
+        if (!isValid) {
+            return res.status(401).send('Contraseña incorrecta');
+        }
+
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.json({ token });
+    } catch (error) {
+        res.status(500).send('Server error');
+    }
+});    
 
 //Endopoints de usuarios
 
