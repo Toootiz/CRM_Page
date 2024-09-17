@@ -3,4 +3,4 @@ Antes de empezar recuerden poner dentro de ambas carpetas "npm install" para que
 
 
 # Instrucciones para la base de datos
-Para cargar la base de datos en su instancia local deberán correr la siguiente linea en la terminal "mongorestore --db SandersDB <ruta del archivo de la base de datos volcada en el repo>"
+Para cargar la base de datos en su instancia local deberán correr la siguiente linea en la terminal "mongorestore --db SandersDB "ruta del archivo de la base de datos volcada en el repo"
