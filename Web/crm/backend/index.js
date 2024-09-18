@@ -4,7 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { UserSchema, hashPassword, comparePassword } = require('./userController');
+const { hashPassword, comparePassword } = require('./userController');
 
 let db;
 const app = express();
@@ -24,7 +24,7 @@ app.post("/auth/register", async (req, res) => {
     const { username, password } = req.body;
     try {
         const hashedPassword = await hashPassword(password);
-        const user = { username, password: hashedPassword };
+        const user = { username, password: hashedPassword, role };
         await db.collection("usuarios").insertOne(user);
         res.status(201).send('Usuario registrado');
     } catch (error) {
@@ -46,14 +46,18 @@ app.post("/auth/login", async (req, res) => {
             return res.status(401).send('Contraseña incorrecta');
         }
 
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.json({ token });
-    } catch (error) {
-        res.status(500).send('Server error');
+        if (user && isMatch) {
+            const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            res.json({ token, role: user.role });
+        } else {
+            res.status(401).json({ error: 'Credenciales invalidas' });
+        }
+    } catch (err) {
+        res.status(500).json({ error: 'Error al iniciar sesión' });
     }
 });    
 
-//Endopoints de usuarios
+//Endpoints de usuarios
 
 //getList, getMany, getManyReference usuarios
 app.get("/usuarios", async (req, res) => {
