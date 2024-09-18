@@ -4,7 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { hashPassword, comparePassword } = require('./userController');
+const { UserSchema, hashPassword, comparePassword } = require('./userController');
 
 let db;
 const app = express();
@@ -21,7 +21,7 @@ async function connectDB() {
 
 //Registro de usuario
 app.post("/auth/register", async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, role } = req.body;
     try {
         const hashedPassword = await hashPassword(password);
         const user = { username, password: hashedPassword, role };
@@ -57,7 +57,7 @@ app.post("/auth/login", async (req, res) => {
     }
 });    
 
-//Endpoints de usuarios
+//Endopoints de usuarios
 
 //getList, getMany, getManyReference usuarios
 app.get("/usuarios", async (req, res) => {
