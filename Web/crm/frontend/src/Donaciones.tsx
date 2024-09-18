@@ -4,19 +4,19 @@ import {List, Datagrid, TextField, EmailField, SimpleForm,
 
 
 const userFilters = [
-   <TextInput source = "q" label = "Search" alwaysOn />,
+   <TextInput source = "q" label = "Busqueda" alwaysOn />,
 ];
 
 
 export const DonationList= () => (
    <List filters = {userFilters}>
        <Datagrid>
-           <TextField source = "id"/>
-           <TextField source = "nombre"/>
-           <EmailField source = "email"/>
-           <TextField source = "telefono"/>
-           <NumberField source = "monto"/>
-           <TextField source = "tipo"/>
+           <TextField source = "id" label = "ID"/>
+           <TextField source = "nombre" label= "Nombre"/>
+           <EmailField source = "email" label= "Email"/>
+           <TextField source = "telefono" label = "Telefono"/>
+           <NumberField source = "monto" label= "Monto"/>
+           <TextField source = "tipo" label = "Tipo"/>
            <EditButton/>
        </Datagrid>
        
@@ -32,13 +32,13 @@ export const DonationEdit = () => {
            <Edit>
                <Title title= " - Editando Usuario"/>
                <SimpleForm onSubmit={save}>
-                   <TextInput disabled source = "id" InputProps = {{disabled: true}}/>
-                   <TextInput source = "nombre"/>
-                   <TextInput source = "email"
+                   <TextInput disabled source = "id" label= "ID" InputProps = {{disabled: true}}/>
+                   <TextInput source = "nombre" label= "Nombre"/>
+                   <TextInput source = "email"label = "Email"
                    validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.'),unique({resource:"email"})]}/>
-                   <TextInput source = "telefono"/>
-                   <NumberInput source = "monto"/>
-                   <TextInput source = "tipo"/>
+                   <TextInput source = "telefono" label="Telefono"/>
+                   <NumberInput source = "monto" label ="Monto"/>
+                   <TextInput source = "tipo" label="Tipo"/> 
                </SimpleForm>
            </Edit>
        </div>
