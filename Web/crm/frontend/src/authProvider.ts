@@ -1,8 +1,19 @@
 import { API_URL } from './config';
+
 // Archivo auxiliar en el proceso de login y gestión de permisos
 
+interface LoginParams {
+    username: string;
+    password: string;
+}
+
+interface AuthResponse {
+    token: string;
+    role: string;
+}
+
 const authProvider = {
-    login: ({ username, password }) => { // Comunicación con el backend en el proceso de login
+    login: ({ username, password }: LoginParams): Promise<AuthResponse> => { // Comunicación con el backend en el proceso de login
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.open('POST', `${API_URL}/users/login`, true);
@@ -11,7 +22,7 @@ const authProvider = {
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        const json = JSON.parse(xhr.responseText); // Parsear la respuesta JSON
+                        const json: AuthResponse = JSON.parse(xhr.responseText); // Parsear la respuesta JSON
                         console.log('Response received:', json);
                         localStorage.setItem('auth', JSON.stringify({ ...json })); // Guardar el token en localStorage
                         resolve(json); // Resolver la promesa con la respuesta JSON
@@ -27,22 +38,22 @@ const authProvider = {
             xhr.send(requestBody); // Enviar el cuerpo de la solicitud como JSON
         });
     },
-    logout: () => { // Elimina el token de autenticación al cerrar sesión
+    logout: (): Promise<void> => { // Elimina el token de autenticación al cerrar sesión
         localStorage.removeItem('auth');
         return Promise.resolve();
     },
-    checkAuth: () => { // Obtiene el token de local storage
+    checkAuth: (): Promise<void> => { // Obtiene el token de local storage
         return localStorage.getItem('auth') ? Promise.resolve() : Promise.reject();
     },
-    checkError: ({ status }) => { // Elimina el token de localstorage si algo falla
+    checkError: ({ status }: { status: number }): Promise<void> => { // Elimina el token de localstorage si algo falla
         if (status === 401 || status === 403) {
             localStorage.removeItem('auth');
             return Promise.reject();
         }
         return Promise.resolve();
     },
-    getPermissions: () => { // obtiene el rol de localstorage
-        const auth = JSON.parse(localStorage.getItem('auth'));
+    getPermissions: (): Promise<string> => { // obtiene el rol de localstorage
+        const auth = JSON.parse(localStorage.getItem('auth') || '{}') as AuthResponse;
         return auth ? Promise.resolve(auth.role) : Promise.reject();
     },
 };

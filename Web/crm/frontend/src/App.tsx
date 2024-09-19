@@ -1,6 +1,6 @@
 import { Admin, Resource } from "react-admin";
 import { Layout } from "./Layout";
-import { dataProvider } from "./dataProvider";
+import dataProvider from "./dataProvider";
 import authProvider from "./authProvider";
 import { DonationList } from "./Donaciones";
 import { DonationEdit } from "./Donaciones";
