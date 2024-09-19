@@ -12,7 +12,7 @@ import {i18nProvider} from "./i18nProvider";
 
 
 export const App = () => (
-  <Admin layout={Layout} dataProvider={dataProvider} authProvider={authProvider} i18nProvider={i18nProvider}>
+  <Admin layout={Layout} dataProvider={dataProvider} authProvider={authProvider}>
     <Resource name = "Donaciones" list = { DonationList } edit = { DonationEdit } create = { DonationCreate }/>
     <Resource name = "Usuarios" list = { UserList } edit = { UserEdit } create = { UserCreate }/>
   </Admin>
