@@ -8,6 +8,7 @@ import { DonationCreate } from "./Donaciones";
 import { UserList } from "./Usuarios";
 import { UserEdit } from "./Usuarios";
 import { UserCreate } from "./Usuarios";
+import {i18nProvider} from "./i18nProvider";
 
 
 export const App = () => (
