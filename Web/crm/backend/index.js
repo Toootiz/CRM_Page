@@ -21,7 +21,7 @@ app.use(cors({
     credentials: true
 }));
 
-app.use('/users', userRoutes);
-app.use('/donations', donationRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/donations', donationRoutes);
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
