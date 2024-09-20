@@ -43,7 +43,7 @@ export const spanishMessages: TranslationMessages = {
             update_application: 'Recargar aplicación',
         },
         boolean: {
-            true: 'Si',
+            true: 'Sí',
             false: 'No',
             null: ' ',
         },
@@ -80,7 +80,7 @@ export const spanishMessages: TranslationMessages = {
             },
             password: {
                 toggle_visible: 'Ocultar contraseña',
-                toggle_hidden: 'Mostar contraseña',
+                toggle_hidden: 'Mostrar contraseña',
             },
         },
         message: {
@@ -96,7 +96,7 @@ export const spanishMessages: TranslationMessages = {
                 '¿Está seguro que desea actualizar este %{name}? |||| ¿Está segurp que desea actualizar estos %{smart_count} elementos?',
             bulk_update_title:
                 'Actualizar %{name} |||| Actualizar %{smart_count} %{name}',
-            clear_array_input: 'Are you sure you want to clear the whole list?',
+            clear_array_input: '¿Está seguro que quiere limpiar toda la lista?',
             delete_content: '¿Está seguro de que desea eliminar este elemento?',
             delete_title: 'Eliminar %{name} #%{id}',
             details: 'Detalles',
@@ -107,7 +107,7 @@ export const spanishMessages: TranslationMessages = {
             no: 'No',
             not_found:
                 'Error de URL. Es posible que lo hayas escrito mal, o el URL ya no funciona.',
-            yes: 'Yes',
+            yes: 'Sí',
             unsaved_changes:
                 "Algunos cambios no se han guardado. ¿Está seguro que quiere ignorarlos?",
         },
@@ -126,34 +126,34 @@ export const spanishMessages: TranslationMessages = {
                 '%{offsetBegin}-%{offsetEnd} de más de %{offsetEnd}',
             current_page: 'Página %{page}',
             page: 'Ir a página %{page}',
-            first: 'ir a la primera página',
+            first: 'Ir a la primera página',
             last: 'Ir a la última página',
             next: 'Página siguiente',
             previous: 'Página anterior',
             page_rows_per_page: 'Filas por página:',
-            skip_nav: 'Saltar al conetnido',
+            skip_nav: 'Saltar al contenido',
         },
         sort: {
             sort_by: 'Ordenar por %{field} %{order}',
-            ASC: 'ascendente',
-            DESC: 'descendente',
+            ASC: 'Ascendente',
+            DESC: 'Descendente',
         },
         auth: {
             auth_check_error: 'Por favor inicia sesión para continuar',
             user_menu: 'Perfil',
             username: 'Usuario',
             password: 'Contraseña',
-            sign_in: 'Registrarse',
-            sign_in_error: 'Arror de autentificación. Intente de nuevo.',
-            logout: 'cerrar sesión',
+            sign_in: 'Iniciar sesión',
+            sign_in_error: 'Error de inicio de sesión. Intente de nuevo.',
+            logout: 'Cerrar sesión',
         },
         notification: {
             updated: 'Elemento actualizado. |||| %{smart_count} elementos actualizados',
             created: 'Elemento creado',
             deleted: 'Elemento eliminado |||| %{smart_count} elementos eliminados',
-            bad_item: 'elemento incorrecto',
-            item_doesnt_exist: 'elemento no existe.',
-            http_error: 'error de comunicación con el servidor',
+            bad_item: 'Elemento incorrecto',
+            item_doesnt_exist: 'Elemento no existe.',
+            http_error: 'Error de comunicación con el servidor',
             data_provider_error:
                 'Error del proveedor de información. Revise la consola para más detalles.',
             i18n_error:
@@ -184,7 +184,7 @@ export const spanishMessages: TranslationMessages = {
             remove_label_with_name: 'Eliminar consulta "%{name}"',
             remove_dialog_title: '¿Eliminar consulta guardada?',
             remove_message:
-                '¿Está seguro que desea eliminiar este elemento de su lista de consultas guardadas?',
+                '¿Está seguro que desea eliminar este elemento de su lista de consultas guardadas?',
             help: 'Filtrar esta lista y guardar esta consulta para más tarde',
         },
         configurable: {
@@ -192,18 +192,18 @@ export const spanishMessages: TranslationMessages = {
             configureMode: 'Configurar página',
             inspector: {
                 title: 'Inspeccionar',
-                content: 'Seleccione el elemento que desee configurar',
+                content: 'Seleccione el elemento que desea configurar',
                 reset: 'Reiniciar configuración',
                 hideAll: 'Ocultar todos',
                 showAll: 'Mostrar todos',
             },
             Datagrid: {
                 title: 'Tabla',
-                unlabeled: 'columna #%{column} sin llenar',
+                unlabeled: 'Columna #%{column} sin llenar',
             },
             SimpleForm: {
                 title: 'Formulario',
-                unlabeled: 'dato #%{input} sin llenar',
+                unlabeled: 'Dato #%{input} sin llenar',
             },
             SimpleList: {
                 title: 'Lista',
