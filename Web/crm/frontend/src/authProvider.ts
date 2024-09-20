@@ -25,6 +25,7 @@ const authProvider = {
                         const json: AuthResponse = JSON.parse(xhr.responseText); // Parsear la respuesta JSON
                         console.log('Response received:', json);
                         localStorage.setItem('auth', JSON.stringify({ ...json })); // Guardar el token en localStorage
+                        //localStorage.setItem('auth',  json );
                         resolve(json); // Resolver la promesa con la respuesta JSON
                     } else {
                         console.error('Login failed:', xhr.status, xhr.statusText);

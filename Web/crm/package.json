@@ -3,9 +3,10 @@
     "start": "concurrently --names \"BACK,FRONT\" -c \"pink,yellow\" \"npm run start:backend\" \"npm run start:frontend\"",
     "start:backend": "cd backend && node index.js",
     "start:frontend": "cd frontend && npm run dev"
-  }, 
+  },
   "dependencies": {
-    "concurrent": "^0.3.2"
+    "concurrent": "^0.3.2",
+    "ra-data-simple-rest": "^5.2.0"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

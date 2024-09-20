@@ -17,8 +17,8 @@ app.use(cors({
     origin: 'http://localhost:5173',
     exposedHeaders: ['X-Total-Count'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
+    allowedHeaders: ['Content-Type', 'Authorization', 'Range'],
+    //credentials: true
 }));
 
 app.use('/api/users', userRoutes);
