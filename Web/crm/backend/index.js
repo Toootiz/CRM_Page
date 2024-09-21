@@ -13,19 +13,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 connectDB();
 
-// app.use(express.json());
-// app.use(cors({
-//     origin: 'http://localhost:5173',
-//     exposedHeaders: ['X-Total-Count'],
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     allowedHeaders: ['Content-Type', 'Authorization', 'Range'],
-//     //credentials: true
-// }));
 
-
-// Middlewares
-app.use(express.json());
-console.log('Middleware express.json() configurado correctamente');
 app.use(cors({
     origin: 'https://localhost:5173', 
     exposedHeaders: ['X-Total-Count'],
@@ -33,6 +21,8 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
+
+app.use(express.json());
 
 
 app.use('/api/users', userRoutes);
@@ -47,4 +37,3 @@ const credentials = { key: privateKey, cert: certificate, ca: ca };
 //Servidor HTTPS
 const httpsServer = https.createServer(credentials, app);
 httpsServer.listen(port, () => console.log(`Server running on port ${port} with HTTPS`));
-//app.listen(port, () => console.log(`Server running on port ${port}`));
