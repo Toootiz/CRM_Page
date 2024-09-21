@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
+//const MongoClient = require("mongodb").MongoClient;
 require('dotenv').config();
+
 
 const connectDB = async () => {
     try {
@@ -11,4 +13,14 @@ const connectDB = async () => {
     }
 };
 
+/*
+let db;
+const connectDB = async () => {
+    const uri = "mongodb://localhost:27017";
+    const client = new MongoClient(uri);
+    await client.connect();
+    db = client.db('SandersDB');
+    console.log("Conectado a la base de datos");
+}
+*/
 module.exports = connectDB;
