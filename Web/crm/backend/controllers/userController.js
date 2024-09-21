@@ -37,57 +37,91 @@ exports.login = async (req, res) => {
     }
 };
 
-exports.getAllUsers = async (req, res) => {
-    if ("_sort" in req.query) { // List
-        let sortBy = req.query._sort;
-        let sortOrder = req.query._order === "ASC" ? 1 : -1;
-        let start = Number(req.query._start);
-        let end = Number(req.query._end);
-        let sorter = {};
-        sorter[sortBy] = sortOrder;
-        let data = await User.find().sort(sorter).project({_id: 0}).toArray();
-        res.set("Access-Control-Expose-Headers", "X-Total-Count");
-        res.set("X-Total-Count", data.length);
-        data = data.slice(start, end);
-        res.json(data);
-    } else if ("id" in req.query) { // Many
-        let data = [];
-        for (let index = 0; index < req.query.id.length; index++) {
-            let dbData = await User.find({id: Number(req.query.id[index])}).project({_id: 0}).toArray();
-            data = data.concat(dbData);
+exports.getAllUsuarios = async (req, res) => {
+    try {
+        const usuarios = await User.find();
+        const usuariosConId = usuarios.map(usuarios => ({
+            id: usuarios._id,
+            nombre: usuarios.nombre,
+            email: usuarios.email,
+            telefono: usuarios.telefono
+        }));
+        res.set('X-Total-Count', usuarios.length);
+        res.json(usuariosConId);
+    } catch (err) {
+        res.status(500).json({ error: 'Error al obtener los usuarios' });
+    }
+};
+// Obtener un post por ID
+exports.getUsuarioById = async (req, res) => {
+    try {
+        const usuario = await User.findById(req.params.id);
+        if (usuario) {
+            res.json({
+                id: usuario._id,
+                nombre: usuario.nombre,
+                email: usuario.email,
+                telefono: usuario.telefono
+            });
+        } else {
+            res.status(404).json({ error: 'Usuario no encontrado' });
         }
-        res.json(data);
-    } else { // Reference
-        let data = await User.find(req.query).project({_id: 0}).toArray();
-        res.set("Access-Control-Expose-Headers", "X-Total-Count");
-        res.set("X-Total-Count", data.length);
-        res.json(data);
+    } catch (err) {
+        res.status(500).json({ error: 'Error al obtener el usuario' });
     }
 };
 
-exports.getOneUser = async (req, res) => {
-    let data = await User.find({id: Number(req.params.id)}).project({_id: 0}).toArray();
-    res.json(data[0]);
+// Crear un nuevo post
+exports.createUsuario = async (req, res) => {
+    try {
+        const nuevoUsuario = new User({
+            nombre: req.body.name,
+            email: req.body.email,
+            telefono: req.body.telefono
+        });
+        const donacionGuardada = await nuevoUsuario.save();
+        res.status(201).json({
+            id: donacionGuardada._id,
+            nombre: donacionGuardada.nombre,
+            email: donacionGuardada.email,
+            telefono: donacionGuardada.telefono
+        });
+    } catch (err) {
+        res.status(500).json({ error: 'Error al crear el usuario' });
+    }
 };
-
-exports.createUser = async (req, res) => {
-    let addValues = req.body;
-    let data = await User.find({}).toArray();
-    let id = data.length + 1;
-    addValues["id"] = id;
-    data = await db.collection("usuarios").insertOne(addValues);
-    res.json(data);
+// Actualizar un post por ID
+exports.updateUsuario = async (req, res) => {
+    try {
+        const updatedUsuario = await User.findByIdAndUpdate(req.params.id, {
+            nombre: req.body.nombre,
+            email: req.body.email,
+            telefono: req.body.telefono
+        }, { new: true });
+        if (updatedUsuario) {
+            res.json({
+                id: updatedDonacion._id,
+                nombre: updatedDonacion.nombre,
+                email: updatedDonacion.email,
+                telefono: updatedDonacion.telefono
+            });
+        } else {
+            res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+    } catch (err) {
+        res.status(500).json({ error: 'Error al actualizar el usuario' });
+    }
 };
-
-exports.updateUser = async (req, res) => {
-    let addValues = req.body;
-    addValues["id"] = Number(req.params.id);
-    let data = await User.updateOne({id: addValues["id"]}, {"$set": addValues});
-    data = await User.find({id: Number(req.params.id)}).project({_id: 0}).toArray();
-    res.json(data[0]);
-};
-
-exports.deleteUser = async (req, res) => {
-    let data = await User.deleteOne({id: Number(req.params.id)})
-    res.json(data);
+// Eliminar un post por ID
+exports.deleteUsuario = async (req, res) => {
+    try {
+        const deletedUsuario = await User.findByIdAndDelete(req.params.id);
+        if (deletedUsuario) {
+            res.json({ id: deletedUsuario._id });
+        } else {
+            res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+    } catch (err) {
+        res.status(500).json({ error: 'Error al eliminar el usuario' });
+    }
 };

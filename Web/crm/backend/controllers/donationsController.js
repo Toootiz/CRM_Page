@@ -1,57 +1,102 @@
 const Donaciones = require('../models/donaciones');
 
-// Obtener todos los posts
 exports.getAllDonaciones = async (req, res) => {
-    if ("_sort" in req.query) { // List
-        let sortBy = req.query._sort;
-        let sortOrder = req.query._order === "ASC" ? 1 : -1;
-        let start = Number(req.query._start);
-        let end = Number(req.query._end);
-        let sorter = {};
-        sorter[sortBy] = sortOrder;
-        let data = await Donaciones.find().sort(sorter).project({_id: 0}).toArray();
-        res.set("Access-Control-Expose-Headers", "X-Total-Count");
-        res.set("X-Total-Count", data.length);
-        data = data.slice(start, end);
-        res.json(data);
-    } else if ("id" in req.query) { // Many
-        let data = [];
-        for (let index = 0; index < req.query.id.length; index++) {
-            let dbData = await Donaciones.find({id: Number(req.query.id[index])}).project({_id: 0}).toArray();
-            data = data.concat(dbData);
+    try {
+        const donaciones = await Donaciones.find();
+        const donacionesConId = donaciones.map(donaciones => ({
+            id: donaciones.id,
+            nombre: donaciones.nombre,
+            email: donaciones.email,
+            telefono: donaciones.telefono,
+            monto: donaciones.monto,
+            tipo: donaciones.tipo
+        }));
+        res.set('X-Total-Count', donaciones.length);
+        res.json(donacionesConId);
+    } catch (err) {
+        res.status(500).json({ error: 'Error al obtener las donaciones' });
+    }
+};
+// Obtener un post por ID
+exports.getDonacionById = async (req, res) => {
+    try {
+        const donacion = await Donaciones.findById(req.params.id);
+        if (donacion) {
+            res.json({
+                id: donacion.id,
+                nombre: donacion.nombre,
+                email: donacion.email,
+                telefono: donacion.telefono,
+                monto: donacion.monto,
+                tipo: donacion.tipo
+            });
+        } else {
+            res.status(404).json({ error: 'Donacion no encontrada' });
         }
-        res.json(data);
-    } else { // Reference
-        let data = await Donaciones.find(req.query).project({_id: 0}).toArray();
-        res.set("Access-Control-Expose-Headers", "X-Total-Count");
-        res.set("X-Total-Count", data.length);
-        res.json(data);
+    } catch (err) {
+        res.status(500).json({ error: 'Error al obtener la donacion' });
     }
 };
 
-exports.getOneDonacion = async (req, res) => {
-    let data = await Donaciones.find({id: Number(req.params.id)}).project({_id: 0}).toArray();
-    res.json(data[0]);
-};
-
+// Crear un nuevo post
 exports.createDonacion = async (req, res) => {
-    let addValues = req.body;
-    let data = await Donaciones.find({}).toArray();
-    let id = data.length + 1;
-    addValues["id"] = id;
-    data = await Donaciones.insertOne(addValues);
-    res.json(data);
+    try {
+        const nuevaDonacion = new Donaciones({
+            nombre: req.body.name,
+            email: req.body.email,
+            telefono: req.body.telefono,
+            monto: req.body.monto,
+            tipo: req.body.tipo
+        });
+        const donacionGuardada = await nuevaDonacion.save();
+        res.status(201).json({
+            id: donacionGuardada.id,
+            nombre: donacionGuardada.nombre,
+            email: donacionGuardada.email,
+            telefono: donacionGuardada.telefono,
+            monto: donacionGuardada.monto,
+            tipo: donacionGuardada.tipo
+        });
+    } catch (err) {
+        res.status(500).json({ error: 'Error al crear la donacion' });
+    }
 };
-
+// Actualizar un post por ID
 exports.updateDonacion = async (req, res) => {
-    let addValues = req.body;
-    addValues["id"] = Number(req.params.id);
-    let data = await Donaciones.updateOne({id: addValues["id"]}, {"$set": addValues});
-    data = await Donaciones.find({id: Number(req.params.id)}).project({_id: 0}).toArray();
-    res.json(data[0]);
+    try {
+        const updatedDonacion = await Donaciones.findByIdAndUpdate(req.params.id, {
+            nombre: req.body.nombre,
+            email: req.body.email,
+            telefono: req.body.telefono,
+            monto: req.body.monto,
+            tipo: req.body.tipo
+        }, { new: true });
+        if (updatedDonacion) {
+            res.json({
+                id: updatedDonacion.id,
+                nombre: updatedDonacion.nombre,
+                email: updatedDonacion.email,
+                telefono: updatedDonacion.telefono,
+                monto: updatedDonacion.monto,
+                tipo: updatedDonacion.tipo
+            });
+        } else {
+            res.status(404).json({ error: 'Donacion no encontrada' });
+        }
+    } catch (err) {
+        res.status(500).json({ error: 'Error al actualizar la donacion' });
+    }
 };
-
+// Eliminar un post por ID
 exports.deleteDonacion = async (req, res) => {
-    let data = await Donaciones.deleteOne({id: Number(req.params.id)})
-    res.json(data);
-}
+    try {
+        const deletedDonacion = await Donaciones.findByIdAndDelete(req.params.id);
+        if (deletedDonacion) {
+            res.json({ id: deletedDonacion._id });
+        } else {
+            res.status(404).json({ error: 'Donacion no encontrada' });
+        }
+    } catch (err) {
+        res.status(500).json({ error: 'Error al eliminar la donacion' });
+    }
+};
