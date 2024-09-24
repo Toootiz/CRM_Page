@@ -21,9 +21,13 @@ const LoginPage = () => {
                     const userRole = auth.role; // Obtener el rol del usuario
 
                     // Redirigir basado en el rol usando navigate
-                    
-                    navigate('/'); // Redirigir a una página predeterminada si el rol no es reconocido
-                    
+                    // if (userRole === 'administrador') {
+                    //     navigate('/admin-dashboard'); // Redirigir a AdminDashboard si es administrador
+                    // } else if (userRole === 'lector') {
+                    //     navigate('/reader-dashboard'); // Redirigir a ReaderDashboard si es lector
+                    // } else {
+                        navigate('/'); // Redirigir a una página predeterminada si el rol no es reconocido
+                    //}
                 } else {
                     notify('Error al obtener la información de usuario', { type: 'warning' });
                 }
