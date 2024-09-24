@@ -6,7 +6,7 @@ const donaciones = new mongoose.Schema({
     email: { type: String, required: true },
     telefono: { type: Number, required: true },
     monto: { type: Number, required: true },
-    tipo: { type: String, enum: ['Tarjeta', 'Efectivo', 'Especie']},
+    tipo: { type: String, enum: ['Tarjeta', 'Efectivo', 'Especie']}
 });
 
 module.exports = mongoose.model('donaciones', donaciones);
