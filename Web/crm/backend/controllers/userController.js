@@ -4,9 +4,9 @@ const User = require('../models/usuarios');
 
 exports.register = async (req, res) => {
     try {
-        const { username, password, role } = req.body;        
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({ username, password: hashedPassword, role });
+        const { usuario, contraseña, rol, nombre, email, telefono } = req.body;        
+        const hashedPassword = await bcrypt.hash(contraseña, 10);
+        const newUser = new User({ usuario, password: hashedPassword, rol, nombre, email, telefono });
         await newUser.save();
         res.status(201).json({ message: 'Usuario registrado con éxito' });
     } catch (err) {
@@ -16,19 +16,19 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {  
-        const { password, username } = req.body;
-        const user = await User.findOne({ username });
+        const { contraseña, usuario } = req.body;
+        const user = await User.findOne({ usuario });
         if (!user) {
             return res.status(401).json({ error: 'Usuario no encontrado' });
         }
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(contraseña, user.contraseña);
         if (!isMatch) {
             return res.status(401).json({ error: 'Password incorrecto' });
         }
         //if (user && await bcrypt.compare(password, user.password)) {
         if (user && isMatch) {
-            const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
-            res.json({ token, role: user.role });
+            const token = jwt.sign({ userId: user.id, rol: user.rol }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            res.json({ token, rol: user.rol });
         } else {
             res.status(401).json({ error: 'Credenciales invalidas' });
         }
@@ -42,8 +42,8 @@ exports.getAllUsuarios = async (req, res) => {
         const usuarios = await User.find();
         const usuariosConId = usuarios.map(usuarios => ({
             id: usuarios.id,
-            username: usuarios.username,
-            role: usuarios.role,
+            usuario: usuarios.usuario,
+            rol: usuarios.rol,
             nombre: usuarios.nombre,
             email: usuarios.email,
             telefono: usuarios.telefono
@@ -61,8 +61,8 @@ exports.getUsuarioById = async (req, res) => {
         if (usuario) {
             res.json({
                 id: usuario.id,
-                username: usuario.username,
-                role: usuario.role,
+                usuario: usuario.usuario,
+                rol: usuario.rol,
                 nombre: usuario.nombre,
                 email: usuario.email,
                 telefono: usuario.telefono
@@ -78,28 +78,34 @@ exports.getUsuarioById = async (req, res) => {
 // Crear un nuevo post
 exports.createUsuario = async (req, res) => {
     try {
+        const { usuario, contraseña, rol, nombre, email, telefono } = req.body;
+        if (!contraseña) {
+            return res.status(400).json({ error: 'Password requerido' });
+        }
+
         const usuarios = await User.find();
-        const { password } = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(contraseña, 10);
         const nuevoUsuario = new User({
             id: usuarios.length + 1,
-            username: req.body.username,
-            password: hashedPassword,
-            nombre: req.body.name,
-            email: req.body.email,
-            telefono: req.body.telefono
+            usuario,
+            contraseña: hashedPassword,
+            rol,
+            nombre,
+            email,
+            telefono
         });
         const donacionGuardada = await nuevoUsuario.save();
         res.status(201).json({
             id: donacionGuardada.id,
-            username: donacionGuardada.username,
-            role: donacionGuardada.role,
+            usuario: donacionGuardada.usuario,
+            rol: donacionGuardada.rol,
             nombre: donacionGuardada.nombre,
             email: donacionGuardada.email,
             telefono: donacionGuardada.telefono
         });
     } catch (err) {
-        res.status(500).json({ error: 'Error al crear el usuario' });
+        console.error("Error al crear la donacion", err);
+        res.status(500).json({ error: 'Error al crear el usuario', details: err.message });
     }
 };
 // Actualizar un post por ID
@@ -107,16 +113,16 @@ exports.updateUsuario = async (req, res) => {
     try {
         const updatedUsuario = await User.findByIdAndUpdate(req.params.id, {
             nombre: req.body.nombre,
-            username: req.body.username,
-            role: req.body.role,
+            usuario: req.body.usuario,
+            rol: req.body.rol,
             email: req.body.email,
             telefono: req.body.telefono
         }, { new: true });
         if (updatedUsuario) {
             res.json({
                 id: updatedDonacion.id,
-                username: updatedDonacion.username,
-                role: updatedDonacion.role,
+                usuario: updatedDonacion.usuario,
+                rol: updatedDonacion.rol,
                 nombre: updatedDonacion.nombre,
                 email: updatedDonacion.email,
                 telefono: updatedDonacion.telefono
@@ -133,7 +139,7 @@ exports.deleteUsuario = async (req, res) => {
     try {
         const deletedUsuario = await User.findByIdAndDelete(req.params.id);
         if (deletedUsuario) {
-            res.json({ id: deletedUsuario.id });
+            res.json({ id: deletedUsuario._id });
         } else {
             res.status(404).json({ error: 'Usuario no encontrado' });
         }

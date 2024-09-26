@@ -45,7 +45,7 @@ exports.createDonacion = async (req, res) => {
         console.log("Obteniendo donaciones");
         const nuevaDonacion = new Donaciones({
             id: donaciones.length + 1,
-            nombre: req.body.name,
+            nombre: req.body.nombre,
             email: req.body.email,
             telefono: req.body.telefono,
             monto: req.body.monto,
@@ -55,7 +55,7 @@ exports.createDonacion = async (req, res) => {
         const donacionGuardada = await nuevaDonacion.save();
         console.log("Donacion guardada");
         res.status(201).json({
-            id: donacionGuardada.id,
+            id: donacionGuardada._id,
             nombre: donacionGuardada.nombre,
             email: donacionGuardada.email,
             telefono: donacionGuardada.telefono,
@@ -63,7 +63,8 @@ exports.createDonacion = async (req, res) => {
             tipo: donacionGuardada.tipo
         });
     } catch (err) {
-        res.status(500).json({ error: 'Error al crear la donacion' });
+        console.error("Error al crear la donacion", err);
+        res.status(500).json({ error: 'Error al crear la donacion', details: err.message});
     }
 };
 // Actualizar un post por ID
@@ -78,7 +79,7 @@ exports.updateDonacion = async (req, res) => {
         }, { new: true });
         if (updatedDonacion) {
             res.json({
-                id: updatedDonacion.id,
+                id: updatedDonacion._id,
                 nombre: updatedDonacion.nombre,
                 email: updatedDonacion.email,
                 telefono: updatedDonacion.telefono,
@@ -97,7 +98,7 @@ exports.deleteDonacion = async (req, res) => {
     try {
         const deletedDonacion = await Donaciones.findByIdAndDelete(req.params.id);
         if (deletedDonacion) {
-            res.json({ id: deletedDonacion.id });
+            res.json({ id: deletedDonacion._id });
         } else {
             res.status(404).json({ error: 'Donacion no encontrada' });
         }
