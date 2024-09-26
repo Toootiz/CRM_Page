@@ -41,14 +41,19 @@ exports.getDonacionById = async (req, res) => {
 // Crear un nuevo post
 exports.createDonacion = async (req, res) => {
     try {
+        const donaciones = await Donaciones.find();
+        console.log("Obteniendo donaciones");
         const nuevaDonacion = new Donaciones({
+            id: donaciones.length + 1,
             nombre: req.body.name,
             email: req.body.email,
             telefono: req.body.telefono,
             monto: req.body.monto,
             tipo: req.body.tipo
         });
+        console.log(nuevaDonacion);
         const donacionGuardada = await nuevaDonacion.save();
+        console.log("Donacion guardada");
         res.status(201).json({
             id: donacionGuardada.id,
             nombre: donacionGuardada.nombre,
@@ -92,7 +97,7 @@ exports.deleteDonacion = async (req, res) => {
     try {
         const deletedDonacion = await Donaciones.findByIdAndDelete(req.params.id);
         if (deletedDonacion) {
-            res.json({ id: deletedDonacion._id });
+            res.json({ id: deletedDonacion.id });
         } else {
             res.status(404).json({ error: 'Donacion no encontrada' });
         }

@@ -41,7 +41,9 @@ exports.getAllUsuarios = async (req, res) => {
     try {
         const usuarios = await User.find();
         const usuariosConId = usuarios.map(usuarios => ({
-            id: usuarios._id,
+            id: usuarios.id,
+            username: usuarios.username,
+            role: usuarios.role,
             nombre: usuarios.nombre,
             email: usuarios.email,
             telefono: usuarios.telefono
@@ -58,7 +60,9 @@ exports.getUsuarioById = async (req, res) => {
         const usuario = await User.findById(req.params.id);
         if (usuario) {
             res.json({
-                id: usuario._id,
+                id: usuario.id,
+                username: usuario.username,
+                role: usuario.role,
                 nombre: usuario.nombre,
                 email: usuario.email,
                 telefono: usuario.telefono
@@ -74,14 +78,22 @@ exports.getUsuarioById = async (req, res) => {
 // Crear un nuevo post
 exports.createUsuario = async (req, res) => {
     try {
+        const usuarios = await User.find();
+        const { password } = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);
         const nuevoUsuario = new User({
+            id: usuarios.length + 1,
+            username: req.body.username,
+            password: hashedPassword,
             nombre: req.body.name,
             email: req.body.email,
             telefono: req.body.telefono
         });
         const donacionGuardada = await nuevoUsuario.save();
         res.status(201).json({
-            id: donacionGuardada._id,
+            id: donacionGuardada.id,
+            username: donacionGuardada.username,
+            role: donacionGuardada.role,
             nombre: donacionGuardada.nombre,
             email: donacionGuardada.email,
             telefono: donacionGuardada.telefono
@@ -95,12 +107,16 @@ exports.updateUsuario = async (req, res) => {
     try {
         const updatedUsuario = await User.findByIdAndUpdate(req.params.id, {
             nombre: req.body.nombre,
+            username: req.body.username,
+            role: req.body.role,
             email: req.body.email,
             telefono: req.body.telefono
         }, { new: true });
         if (updatedUsuario) {
             res.json({
-                id: updatedDonacion._id,
+                id: updatedDonacion.id,
+                username: updatedDonacion.username,
+                role: updatedDonacion.role,
                 nombre: updatedDonacion.nombre,
                 email: updatedDonacion.email,
                 telefono: updatedDonacion.telefono
@@ -117,7 +133,7 @@ exports.deleteUsuario = async (req, res) => {
     try {
         const deletedUsuario = await User.findByIdAndDelete(req.params.id);
         if (deletedUsuario) {
-            res.json({ id: deletedUsuario._id });
+            res.json({ id: deletedUsuario.id });
         } else {
             res.status(404).json({ error: 'Usuario no encontrado' });
         }
