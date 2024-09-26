@@ -46,11 +46,13 @@ export const UserCreate = () => {
     
     <Create>
         <SimpleForm>
+            <TextInput source = "usuario" label= "Nombre de usuario"/>
+            <TextInput source = "contraseña" label="Contraseña"/>
+            <TextInput source = "rol" label="Rol"/>
             <TextInput source = "nombre"label="Nombre"/>
             <TextInput source = "email" label="Email"
             validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.')]}/>
             <TextInput source = "telefono" label="Telefono"/>
-            <TextInput source="Contraseña" label="Contraseña"/>
         </SimpleForm>
     </Create>
 )};
