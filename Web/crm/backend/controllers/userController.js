@@ -4,9 +4,9 @@ const User = require('../models/usuarios');
 
 exports.register = async (req, res) => {
     try {
-        const { usuario, contraseña, rol, nombre, email, telefono } = req.body;        
-        const hashedPassword = await bcrypt.hash(contraseña, 10);
-        const newUser = new User({ usuario, password: hashedPassword, rol, nombre, email, telefono });
+        const { username, password, role, name, email, phone } = req.body;        
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({ username, password: hashedPassword, role, name, email, phone });
         await newUser.save();
         res.status(201).json({ message: 'Usuario registrado con éxito' });
     } catch (err) {
@@ -16,21 +16,21 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {  
-        const { contraseña, usuario } = req.body;
-        const user = await User.findOne({ usuario });
+        const { password, username } = req.body;
+        const user = await User.findOne({ username });
         if (!user) {
             return res.status(401).json({ error: 'Usuario no encontrado' });
         }
-        const isMatch = await bcrypt.compare(contraseña, user.contraseña);
+        const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(401).json({ error: 'Password incorrecto' });
+            return res.status(401).json({ error: 'Contraseña incorrecta' });
         }
         //if (user && await bcrypt.compare(password, user.password)) {
         if (user && isMatch) {
-            const token = jwt.sign({ userId: user.id, rol: user.rol }, process.env.JWT_SECRET, { expiresIn: '1h' });
-            res.json({ token, rol: user.rol });
+            const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            res.json({ token, role: user.role });
         } else {
-            res.status(401).json({ error: 'Credenciales invalidas' });
+            res.status(401).json({ error: 'Nombre de Usuario o contraseña inválidas' });
         }
     } catch (err) {
         res.status(500).json({ error: 'Error al iniciar sesión' });
@@ -41,12 +41,12 @@ exports.getAllUsuarios = async (req, res) => {
     try {
         const usuarios = await User.find();
         const usuariosConId = usuarios.map(usuarios => ({
-            id: usuarios.id,
-            usuario: usuarios.usuario,
-            rol: usuarios.rol,
-            nombre: usuarios.nombre,
+            id: usuarios._id,
+            username: usuarios.username,
+            role: usuarios.role,
+            name: usuarios.name,
             email: usuarios.email,
-            telefono: usuarios.telefono
+            phone: usuarios.phone
         }));
         res.set('X-Total-Count', usuarios.length);
         res.json(usuariosConId);
@@ -60,12 +60,12 @@ exports.getUsuarioById = async (req, res) => {
         const usuario = await User.findById(req.params.id);
         if (usuario) {
             res.json({
-                id: usuario.id,
-                usuario: usuario.usuario,
-                rol: usuario.rol,
-                nombre: usuario.nombre,
+                id: usuario._id,
+                username: usuario.username,
+                role: usuario.role,
+                name: usuario.name,
                 email: usuario.email,
-                telefono: usuario.telefono
+                phone: usuario.phone
             });
         } else {
             res.status(404).json({ error: 'Usuario no encontrado' });
@@ -78,54 +78,52 @@ exports.getUsuarioById = async (req, res) => {
 // Crear un nuevo post
 exports.createUsuario = async (req, res) => {
     try {
-        const { usuario, contraseña, rol, nombre, email, telefono } = req.body;
-        if (!contraseña) {
+        const { username, password, role, name, email, phone } = req.body;
+        if (!password) {
             return res.status(400).json({ error: 'Password requerido' });
         }
 
-        const usuarios = await User.find();
-        const hashedPassword = await bcrypt.hash(contraseña, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
         const nuevoUsuario = new User({
-            id: usuarios.length + 1,
-            usuario,
-            contraseña: hashedPassword,
-            rol,
-            nombre,
+            id: req.body._id,
+            username,
+            password: hashedPassword,
+            role,
+            name,
             email,
-            telefono
+            phone
         });
         const donacionGuardada = await nuevoUsuario.save();
         res.status(201).json({
-            id: donacionGuardada.id,
-            usuario: donacionGuardada.usuario,
-            rol: donacionGuardada.rol,
-            nombre: donacionGuardada.nombre,
+            id: donacionGuardada._id,
+            username: donacionGuardada.username,
+            role: donacionGuardada.role,
+            name: donacionGuardada.name,
             email: donacionGuardada.email,
-            telefono: donacionGuardada.telefono
+            phone: donacionGuardada.phone
         });
     } catch (err) {
-        console.error("Error al crear la donacion", err);
-        res.status(500).json({ error: 'Error al crear el usuario', details: err.message });
+        res.status(500).json({ error: 'Error al crear el usuario' });
     }
 };
 // Actualizar un post por ID
 exports.updateUsuario = async (req, res) => {
     try {
         const updatedUsuario = await User.findByIdAndUpdate(req.params.id, {
-            nombre: req.body.nombre,
-            usuario: req.body.usuario,
-            rol: req.body.rol,
+            name: req.body.name,
+            username: req.body.username,
+            role: req.body.role,
             email: req.body.email,
-            telefono: req.body.telefono
+            phone: req.body.phone
         }, { new: true });
         if (updatedUsuario) {
             res.json({
-                id: updatedDonacion.id,
-                usuario: updatedDonacion.usuario,
-                rol: updatedDonacion.rol,
-                nombre: updatedDonacion.nombre,
+                id: updatedDonacion._id,
+                username: updatedDonacion.username,
+                role: updatedDonacion.role,
+                name: updatedDonacion.name,
                 email: updatedDonacion.email,
-                telefono: updatedDonacion.telefono
+                phone: updatedDonacion.phone
             });
         } else {
             res.status(404).json({ error: 'Usuario no encontrado' });

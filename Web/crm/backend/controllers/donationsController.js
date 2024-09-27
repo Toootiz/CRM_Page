@@ -4,12 +4,12 @@ exports.getAllDonaciones = async (req, res) => {
     try {
         const donaciones = await Donaciones.find();
         const donacionesConId = donaciones.map(donaciones => ({
-            id: donaciones.id,
-            nombre: donaciones.nombre,
+            id: donaciones._id,
+            name: donaciones.name,
             email: donaciones.email,
-            telefono: donaciones.telefono,
-            monto: donaciones.monto,
-            tipo: donaciones.tipo
+            phone: donaciones.telefono,
+            amount: donaciones.amount,
+            type: donaciones.type
         }));
         res.set('X-Total-Count', donaciones.length);
         res.json(donacionesConId);
@@ -23,12 +23,12 @@ exports.getDonacionById = async (req, res) => {
         const donacion = await Donaciones.findById(req.params.id);
         if (donacion) {
             res.json({
-                id: donacion.id,
-                nombre: donacion.nombre,
+                id: donacion._id,
+                name: donacion.name,
                 email: donacion.email,
-                telefono: donacion.telefono,
-                monto: donacion.monto,
-                tipo: donacion.tipo
+                phone: donacion.phone,
+                amount: donacion.amount,
+                type: donacion.type
             });
         } else {
             res.status(404).json({ error: 'Donacion no encontrada' });
@@ -41,50 +41,46 @@ exports.getDonacionById = async (req, res) => {
 // Crear un nuevo post
 exports.createDonacion = async (req, res) => {
     try {
-        const donaciones = await Donaciones.find();
-        console.log("Obteniendo donaciones");
         const nuevaDonacion = new Donaciones({
-            id: donaciones.length + 1,
-            nombre: req.body.nombre,
+            id: req.body._id,
+            name: req.body.name,
             email: req.body.email,
-            telefono: req.body.telefono,
-            monto: req.body.monto,
-            tipo: req.body.tipo
+            phone: req.body.phone,
+            amount: req.body.amount,
+            type: req.body.type
         });
-        console.log(nuevaDonacion);
+
         const donacionGuardada = await nuevaDonacion.save();
-        console.log("Donacion guardada");
         res.status(201).json({
             id: donacionGuardada._id,
-            nombre: donacionGuardada.nombre,
+            name: donacionGuardada.name,
             email: donacionGuardada.email,
-            telefono: donacionGuardada.telefono,
-            monto: donacionGuardada.monto,
-            tipo: donacionGuardada.tipo
+            phone: donacionGuardada.phone,
+            amount: donacionGuardada.amount,
+            type: donacionGuardada.type
         });
     } catch (err) {
-        console.error("Error al crear la donacion", err);
-        res.status(500).json({ error: 'Error al crear la donacion', details: err.message});
+        res.status(500).json({ error: 'Error al crear la donacion'});
     }
 };
 // Actualizar un post por ID
 exports.updateDonacion = async (req, res) => {
     try {
         const updatedDonacion = await Donaciones.findByIdAndUpdate(req.params.id, {
-            nombre: req.body.nombre,
+            name: req.body.name,
             email: req.body.email,
-            telefono: req.body.telefono,
-            monto: req.body.monto,
-            tipo: req.body.tipo
+            phone: req.body.phone,
+            amount: req.body.amount,
+            type: req.body.type
         }, { new: true });
         if (updatedDonacion) {
             res.json({
                 id: updatedDonacion._id,
-                nombre: updatedDonacion.nombre,
+                name: updatedDonacion.name,
                 email: updatedDonacion.email,
-                telefono: updatedDonacion.telefono,
-                monto: updatedDonacion.monto,
-                tipo: updatedDonacion.tipo
+                phone: updatedDonacion.phone,
+                amount: updatedDonacion.amount,
+                type: updatedDonacion.type
             });
         } else {
             res.status(404).json({ error: 'Donacion no encontrada' });
