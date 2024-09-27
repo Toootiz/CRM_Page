@@ -11,12 +11,11 @@ const userFilters = [
 export const DonationList= () => (
    <List filters = {userFilters}>
        <Datagrid>
-           <TextField source = "id" label = "ID"/>
-           <TextField source = "nombre" label= "Nombre"/>
+           <TextField source = "name" label= "Nombre"/>
            <EmailField source = "email" label= "Email"/>
-           <TextField source = "telefono" label = "Telefono"/>
-           <NumberField source = "monto" label= "Monto"/>
-           <TextField source = "tipo" label = "Tipo"/>
+           <TextField source = "phone" label="Teléfono"/>
+           <NumberField source = "amount" label= "Monto"/>
+           <TextField source = "type" label = "Tipo"/>
            <EditButton/>
        </Datagrid>
        
@@ -32,12 +31,12 @@ export const DonationEdit = () => {
                <Title title= " - Editando Usuario"/>
                <SimpleForm onSubmit={save}>
                    <TextInput disabled source = "id" label= "ID" InputProps = {{disabled: true}}/>
-                   <TextInput source = "nombre" label= "Nombre"/>
+                   <TextInput source = "name" label= "Nombre"/>
                    <TextInput source = "email"label = "Email"
                    validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.')]}/>
-                   <TextInput source = "telefono" label="Telefono"/>
-                   <NumberInput source = "monto" label ="Monto"/>
-                   <TextInput source = "tipo" label="Tipo"/> 
+                   <TextInput source = "phone" label="Teléfono"/>
+                   <NumberInput source = "amount" label ="Monto"/>
+                   <TextInput source = "type" label="Tipo"/> 
                </SimpleForm>
            </Edit>
        </div>
@@ -50,11 +49,12 @@ export const DonationCreate = () => {
    
    <Create>
        <SimpleForm>
-           <TextInput source = "nombre"/>
-           <TextInput source = "email" validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.')]}/>
-           <TextInput source = "telefono"/>
-           <NumberInput source = "monto"/>
-           <TextInput source = "tipo"/>
+           <TextInput source = "name" label = "Nombre"/>
+           <TextInput source = "email" label = "Email"
+           validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.')]}/>
+           <TextInput source = "phone" label = "Teléfono"/>
+           <NumberInput source = "amount" label = "Monto"/>
+           <TextInput source = "type" label = "Tipo"/>
        </SimpleForm>
    </Create>
 )};
