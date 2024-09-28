@@ -6,7 +6,9 @@
   },
   "dependencies": {
     "concurrent": "^0.3.2",
-    "ra-data-simple-rest": "^5.2.0"
+    "date-fns": "^4.1.0",
+    "ra-data-simple-rest": "^5.2.0",
+    "recharts": "^2.12.7"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
