@@ -1,5 +1,5 @@
 import {List, Datagrid, TextField, EmailField, SimpleForm,
-     TextInput, Create, required,regex, useUnique,useEditController, Edit,
+     TextInput, Create, required,regex,useEditController, Edit,
       EditButton, Title} from 'react-admin';
 
 
@@ -11,18 +11,17 @@ const userFilters = [
 export const UserList= () => (
     <List filters = {userFilters}>
         <Datagrid>
-            <TextField source = "id" label= "ID"/>
-            <TextField source = "nombre" label="Nombre"/>
+            <TextField source = "name" label="Nombre"/>
+            <TextField source = "username" label="Nombre de Usuario"/>
+            <TextField source = "role" label="Rol"/>
             <EmailField source = "email" label="Email"/>
-            <TextField source = "telefono" label="Telefono"/>
+            <TextField source = "phone" label="Teléfono"/>
             <EditButton/>
         </Datagrid>
-        
     </List>
 );
 
 export const UserEdit = () => {
-    const unique = useUnique();
     const {save, isPending} = useEditController();
     if (isPending) return null;
     return(
@@ -31,10 +30,12 @@ export const UserEdit = () => {
                 <Title title= " - Editando Usuario"/>
                 <SimpleForm onSubmit={save}>
                     <TextInput disabled source = "id" InputProps = {{disabled: true}} label= "ID"/>
-                    <TextInput source = "nombre" label="Nombre"/>
+                    <TextInput source = "username" label= "Nombre de Usuario"/>
+                    <TextInput source = "role" label="Rol"/>
+                    <TextInput source = "name" label="Nombre"/>
                     <TextInput source = "email" label="Email"
-                    validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.'),unique()]}/>
-                    <TextInput source = "telefono" label="Telefono"/>
+                    validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.')]}/>
+                    <TextInput source = "phone" label="Teléfono"/>
                 </SimpleForm>
             </Edit>
         </div>
@@ -43,16 +44,17 @@ export const UserEdit = () => {
 };
 
 export const UserCreate = () => {
-    const unique = useUnique();
     return (
     
     <Create>
         <SimpleForm>
-            <TextInput source = "nombre"label="Nombre"/>
+            <TextInput source = "username" label= "Nombre de Usuario"/>
+            <TextInput source = "password" label="Contraseña"/>
+            <TextInput source = "role" label="Rol"/>
+            <TextInput source = "name"label="Nombre"/>
             <TextInput source = "email" label="Email"
-            validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.'),unique()]}/>
-            <TextInput source = "telefono" label="Telefono" validate={unique()}/>
-            <TextInput source="Contraseña" label="Contraseña"/>
+            validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.')]}/>
+            <TextInput source = "phone" label="Teléfono"/>
         </SimpleForm>
     </Create>
 )};
