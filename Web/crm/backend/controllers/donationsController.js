@@ -64,7 +64,8 @@ exports.createDonacion = async (req, res) => {
             type: donacionGuardada.type
         });
     } catch (err) {
-        res.status(500).json({ error: 'Error al crear la donacion'});
+        console.error(err);
+        res.status(500).json({ error: 'Error al crear la donacion', details: err });
     }
 };
 // Actualizar un post por ID
