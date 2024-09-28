@@ -7,8 +7,9 @@ exports.getAllDonaciones = async (req, res) => {
             id: donaciones._id,
             name: donaciones.name,
             email: donaciones.email,
-            phone: donaciones.telefono,
+            phone: donaciones.phone,
             amount: donaciones.amount,
+            date: donaciones.date,
             type: donaciones.type
         }));
         res.set('X-Total-Count', donaciones.length);
@@ -28,6 +29,7 @@ exports.getDonacionById = async (req, res) => {
                 email: donacion.email,
                 phone: donacion.phone,
                 amount: donacion.amount,
+                date: donacion.date,
                 type: donacion.type
             });
         } else {
@@ -47,6 +49,7 @@ exports.createDonacion = async (req, res) => {
             email: req.body.email,
             phone: req.body.phone,
             amount: req.body.amount,
+            date: req.body.date,
             type: req.body.type
         });
 
@@ -57,6 +60,7 @@ exports.createDonacion = async (req, res) => {
             email: donacionGuardada.email,
             phone: donacionGuardada.phone,
             amount: donacionGuardada.amount,
+            date: donacionGuardada.date,
             type: donacionGuardada.type
         });
     } catch (err) {
@@ -71,6 +75,7 @@ exports.updateDonacion = async (req, res) => {
             email: req.body.email,
             phone: req.body.phone,
             amount: req.body.amount,
+            date,
             type: req.body.type
         }, { new: true });
         if (updatedDonacion) {
@@ -80,6 +85,7 @@ exports.updateDonacion = async (req, res) => {
                 email: updatedDonacion.email,
                 phone: updatedDonacion.phone,
                 amount: updatedDonacion.amount,
+                date: updatedDonacion.date,
                 type: updatedDonacion.type
             });
         } else {

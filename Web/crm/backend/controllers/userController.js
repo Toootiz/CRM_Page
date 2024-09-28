@@ -103,7 +103,8 @@ exports.createUsuario = async (req, res) => {
             phone: donacionGuardada.phone
         });
     } catch (err) {
-        res.status(500).json({ error: 'Error al crear el usuario' });
+        console.error(err);
+        res.status(500).json({ error: 'Error al crear el usuario', details: err });
     }
 };
 // Actualizar un post por ID
