@@ -1,6 +1,6 @@
 import { fetchUtils, DataProvider } from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
-//import { API_URL } from './config';
+import { API_URL } from './config';
 
 interface Auth {
     token: string;
@@ -19,6 +19,6 @@ const httpClient = (url: string, options: fetchUtils.Options = {}): Promise<any>
     return fetchUtils.fetchJson(url, options);
 };
 
-const dataProvider: DataProvider = jsonServerProvider('https://localhost:5001/api', httpClient);
+const dataProvider: DataProvider = jsonServerProvider(API_URL, httpClient);
 
 export default dataProvider;
