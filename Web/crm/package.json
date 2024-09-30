@@ -2,7 +2,14 @@
   "scripts": {
     "start": "concurrently --names \"BACK,FRONT\" -c \"pink,yellow\" \"npm run start:backend\" \"npm run start:frontend\"",
     "start:backend": "cd backend && node index.js",
-    "start:frontend": "cd frontend && npm run dev"
+    "start:frontend": "cd frontend && npm run dev",
+    "act": "concurrently --names \"CRM,BACK,FRONT\" -c \"red,purple,white\" \"npm i\" \"npm run install:backend\" \"npm run install:frontend\"",
+    "install:frontend": "cd frontend && npm i",
+    "install:backend": "cd frontend && npm i",
+
+
+    "dumpdb": "mongodump --db SandersDB --out \"\\crm\\SandersDB\"",
+    "setdb": "mongorestore --nsInclude SandersDB \"C:\\Users\\gabom\\OneDrive\\Documents\\Tec\\5to Semestre\\Bloque\\E2\\web\\crm\\SandersDB\\\""
   },
   "dependencies": {
     "concurrent": "^0.3.2",
