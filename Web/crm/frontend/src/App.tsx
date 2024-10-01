@@ -11,12 +11,15 @@ import { UserCreate } from "./Usuarios";
 import { i18nProvider } from "./i18nProvider";
 import LoginPage from "./LoginPage";
 import MyBarChart from "./Barras";
+import MyPieChart from "./pie_chart";
+import MyDashboard from "./DashBoard";
 
 
 export const App = () => (
-  <Admin layout={Layout} dataProvider={dataProvider} authProvider={authProvider} i18nProvider={i18nProvider} loginPage={LoginPage}>
+  <Admin layout={Layout} dataProvider={dataProvider} authProvider={authProvider} i18nProvider={i18nProvider} loginPage={LoginPage} dashboard={MyDashboard}>
     <Resource name = "donations" options={{ label: 'Donaciones' }} list = { DonationList } edit = { DonationEdit } create = { DonationCreate }/>
     <Resource name = "users" options={{ label: 'Usuarios' }}list = { UserList } edit = { UserEdit } create = { UserCreate }/>
     <Resource name = "barchart" options={{ label: 'Gráfico de Barras' }} list = { MyBarChart }/>
+    
   </Admin>
 );
