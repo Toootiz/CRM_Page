@@ -40,9 +40,9 @@ const LoginPage = () => {
     return (
         <div id="login-body"> 
             <div className="ring">
-                <i style={{ '--clr': '#00ff0a' }}></i>
-                <i style={{ '--clr': '#ff0057' }}></i>
-                <i style={{ '--clr': '#fffd44' }}></i>
+                <i style={{ '--clr': '#755185' }}></i>
+                <i style={{ '--clr': '#daa370' }}></i>
+                <i style={{ '--clr': '#a23b62' }}></i>
                 <div className="login">
                     <h2>Inicio de sesión</h2>
                     <div className="inputBx">
