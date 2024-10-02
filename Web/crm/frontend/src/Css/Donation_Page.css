@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
+
+/* Cambiar el body por un id específico */
+#donations-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: 
+  
+  #000000;
+  width: 100%;
+  overflow: hidden;
+}
+
+
+.Donation_box {
+  position: absolute;
+  width: 300px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.Donation_box h2 {
+  font-size: 2em;
+  color: #fff;
+}
+.Donation_box .inputBx {
+  position: relative;
+  width: 100%;
+}
+.Donation_box .inputBx input {
+  position: relative;
+  width: 100%;
+  padding: 12px 18px;
+  background: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 40px;
+  font-size: 1.2em;
+  color: #fff;
+  box-shadow: none;
+  outline: none;
+}
+
+.Donation_box #Type-field {
+  position: relative;
+  width: 100%;
+  background: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 40px;
+  font-size: 1.2em;
+  color: #fff;
+  box-shadow: none;
+  outline: none;
+}
+
+.Donation_box .inputBx input[type="submit"] {
+  width: 100%;
+  background: #0078ff;
+  background: linear-gradient(45deg,#ff357a, #fff172);
+  border: none;
+  cursor: pointer;
+  
+}
+
+.Donation_box .inputBx input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+.Donation_box .links {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.Donation_box .links a {
+  color: #fff;
+  text-decoration: none;
+}
