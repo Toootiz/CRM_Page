@@ -35,6 +35,6 @@ export const App = () => (
 
     <Resource name="donations" options={{ label: 'Donaciones' }} list={DonationList} edit={DonationEdit} create={DonationCreate} icon={PostIcon} />
     <Resource name="users" options={{ label: 'Usuarios' }} list={UserList} edit={UserEdit} create={UserCreate} icon={UserIcon} />
-    <Resource name = "barchart" options={{ label: 'Gráfico de Barras' }} list = { MyBarChart }/>
+    {/* <Resource name = "barchart" options={{ label: 'Gráfico de Barras' }} list = { MyBarChart }/> */}
   </Admin>
   )
