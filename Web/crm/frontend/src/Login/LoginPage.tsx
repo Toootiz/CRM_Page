@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useLogin, useNotify } from 'react-admin';
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import './Css/LoginPage.css'; // Importar los estilos personalizados
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import '../Css/LoginPage.css'; // Importar los estilos personalizados
 
 const LoginPage = () => {
     const [username, setUsername] = useState(''); // Estado para almacenar el nombre de usuario
@@ -20,9 +21,12 @@ const LoginPage = () => {
                 if (auth) {
                     const userRole = auth.role; // Obtener el rol del usuario
                     setIsLoggedIn(true); // Actualizar el estado de inicio de sesión
-                    setTimeout(() => {
-                        navigate('/'); // Redirigir basado en el rol usando navigate después de 1 segundo para simular carga
-                    }, 1000); // Simular el tiempo de carga antes de redirigir
+                    if (userRole === 'Lector') {
+                        //window.location.href = '/index.html';
+                        navigate('/lec-dashboard'); // Redirigir a la página de lector si el rol es 'Lector'
+                    } else if (userRole === 'Administrador') {
+                        navigate('/admin-dashboard'); // Redirigir a la página de administrador si el rol es 'Administrador'
+                    }
                 } else {
                     notify('Error al obtener la información de usuario', { type: 'warning' });
                 }
@@ -32,13 +36,29 @@ const LoginPage = () => {
             });
     };
 
+    const handleGoBack = () => {
+        window.location.href = '/index.html'; // Navegar a la página principal
+    }
+
     // Si el usuario ha iniciado sesión, no mostrar los elementos de la página de login
     if (isLoggedIn) {
         return <div className="login-cleanup">Iniciando sesión...</div>; // Limpiar la pantalla o mostrar mensaje temporal
     }
 
     return (
-        <div id="login-body"> 
+        <div id="login-body">
+            <IconButton
+                style={{
+                    position: 'absolute',
+                    top: '10px',
+                    left: '10px',
+                    color: 'white',
+                }}
+                onAbort={handleGoBack}
+                >
+                    <ArrowBackIcon/>
+            </IconButton> 
+                       
             <div className="ring">
                 <i style={{ '--clr': '#755185' }}></i>
                 <i style={{ '--clr': '#daa370' }}></i>
