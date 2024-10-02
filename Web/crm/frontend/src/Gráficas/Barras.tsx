@@ -34,11 +34,11 @@ const MyBarChart = () => {
     return <CircularProgress />;
   }
 return (
-  <ResponsiveContainer width="100%" height={400}>
+  <ResponsiveContainer width="100%" height={600}>
     <BarChart data={data} layout='vertical'>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis type="number" dataKey="amount"/>
-      <YAxis type="category"dataKey="name"/>
+      <YAxis type="category"dataKey="name" width={150}/>
       <Tooltip itemStyle={{backgroundColor: 'white', color: 'black'}}/>
       <Legend />
       <Bar dataKey="amount" fill="#00D7C9" label="Cantidad"/>
