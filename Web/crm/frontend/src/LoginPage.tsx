@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useLogin, useNotify } from 'react-admin';
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import './Css/LoginPage.css'; // Importar los estilos personalizados
 
 const LoginPage = () => {
@@ -21,9 +22,10 @@ const LoginPage = () => {
                     const userRole = auth.role; // Obtener el rol del usuario
                     setIsLoggedIn(true); // Actualizar el estado de inicio de sesión
                     if (userRole === 'Lector') {
-                        window.location.href = '/index.html';
+                        //window.location.href = '/index.html';
+                        navigate('/lec-dashboard'); // Redirigir a la página de lector si el rol es 'Lector'
                     } else if (userRole === 'Administrador') {
-                        navigate('/');
+                        navigate('/admin-dashboard'); // Redirigir a la página de administrador si el rol es 'Administrador'
                     }
                 } else {
                     notify('Error al obtener la información de usuario', { type: 'warning' });
@@ -34,13 +36,29 @@ const LoginPage = () => {
             });
     };
 
+    const handleGoBack = () => {
+        window.location.href = '/index.html'; // Navegar a la página principal
+    }
+
     // Si el usuario ha iniciado sesión, no mostrar los elementos de la página de login
     if (isLoggedIn) {
         return <div className="login-cleanup">Iniciando sesión...</div>; // Limpiar la pantalla o mostrar mensaje temporal
     }
 
     return (
-        <div id="login-body"> 
+        <div id="login-body">
+            <IconButton
+                style={{
+                    position: 'absolute',
+                    top: '10px',
+                    left: '10px',
+                    color: 'white',
+                }}
+                onAbort={handleGoBack}
+                >
+                    <ArrowBackIcon/>
+            </IconButton> 
+                       
             <div className="ring">
                 <i style={{ '--clr': '#755185' }}></i>
                 <i style={{ '--clr': '#daa370' }}></i>
