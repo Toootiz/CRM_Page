@@ -2,11 +2,11 @@ import './Css/Main.css';  // Este es el CSS general para toda la app
 import { Admin, Resource, radiantLightTheme, radiantDarkTheme, CustomRoutes } from "react-admin";
 import { Layout } from "./Layout";
 import { Route } from "react-router-dom";
-import dataProvider from "./dataProvider";
-import authProvider from "./authProvider";
+import dataProvider from "./Componentes/dataProvider";
+import authProvider from "./Componentes/authProvider";
 import { DonationList, DonationEdit, DonationCreate } from "./Recursos/Donaciones";
 import { UserList, UserEdit, UserCreate } from "./Recursos/Usuarios";
-import { i18nProvider } from "./i18nProvider";
+import { i18nProvider } from "./Componentes/i18nProvider";
 import LoginPage from "./Login/LoginPage";
 import UserIcon from "@mui/icons-material/Group";
 import PostIcon from "@mui/icons-material/Book";

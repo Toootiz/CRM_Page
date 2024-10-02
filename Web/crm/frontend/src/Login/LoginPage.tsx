@@ -3,7 +3,7 @@ import { useLogin, useNotify } from 'react-admin';
 import { TextField, Button, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import './Css/LoginPage.css'; // Importar los estilos personalizados
+import '../Css/LoginPage.css'; // Importar los estilos personalizados
 
 const LoginPage = () => {
     const [username, setUsername] = useState(''); // Estado para almacenar el nombre de usuario
