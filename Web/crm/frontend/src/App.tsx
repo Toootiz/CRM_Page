@@ -4,18 +4,14 @@ import { Layout } from "./Layout";
 import { Route } from "react-router-dom";
 import dataProvider from "./dataProvider";
 import authProvider from "./authProvider";
-import { DonationList } from "./Donaciones";
-import { DonationEdit } from "./Donaciones";
-import { DonationCreate } from "./Donaciones";
-import { UserList } from "./Usuarios";
-import { UserEdit } from "./Usuarios";
-import { UserCreate } from "./Usuarios";
+import { DonationList, DonationEdit, DonationCreate } from "./Recursos/Donaciones";
+import { UserList, UserEdit, UserCreate } from "./Recursos/Usuarios";
 import { i18nProvider } from "./i18nProvider";
-import LoginPage from "./LoginPage";
+import LoginPage from "./Login/LoginPage";
 import UserIcon from "@mui/icons-material/Group";
 import PostIcon from "@mui/icons-material/Book";
-import  AdminDashboard  from "./AdminDasboard";
-import LecDashboard from "./LecDashboard";
+import  AdminDashboard  from "./Dashboards/AdminDasboard";
+import LecDashboard from "./Dashboards/LecDashboard";
 
 export const App = () => (
   <Admin
