@@ -37,9 +37,9 @@ return (
   <ResponsiveContainer width="100%" height={400}>
     <BarChart data={data}>
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
+      <XAxis dataKey="name"/>
       <YAxis dataKey="amount"/>
-      <Tooltip />
+      <Tooltip itemStyle={{backgroundColor: 'white', color: 'black'}}/>
       <Legend />
       <Bar dataKey="amount" fill="#8884d8" label="Cantidad"/>
     </BarChart>

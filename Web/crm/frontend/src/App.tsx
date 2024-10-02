@@ -1,4 +1,4 @@
-import { Admin, Resource } from "react-admin";
+import { Admin, Resource, defaultDarkTheme, defaultLightTheme } from "react-admin";
 import { Layout } from "./Layout";
 import dataProvider from "./dataProvider";
 import authProvider from "./authProvider";
@@ -13,10 +13,17 @@ import LoginPage from "./LoginPage";
 import MyBarChart from "./Barras";
 import MyPieChart from "./pie_chart";
 import MyDashboard from "./DashBoard";
+import { deepmerge } from "@mui/utils" 
+
+const lightTheme = defaultLightTheme;
+const darkTheme = deepmerge(defaultDarkTheme, {palette: {mode: 'dark'}});
 
 
 export const App = () => (
-  <Admin layout={Layout} dataProvider={dataProvider} authProvider={authProvider} i18nProvider={i18nProvider} loginPage={LoginPage} dashboard={MyDashboard}>
+  <Admin layout={Layout} dataProvider={dataProvider} authProvider={authProvider} 
+  i18nProvider={i18nProvider} loginPage={LoginPage} dashboard={MyDashboard} 
+  theme={lightTheme} darkTheme={darkTheme}>
+    
     <Resource name = "donations" options={{ label: 'Donaciones' }} list = { DonationList } edit = { DonationEdit } create = { DonationCreate }/>
     <Resource name = "users" options={{ label: 'Usuarios' }}list = { UserList } edit = { UserEdit } create = { UserCreate }/>
     <Resource name = "barchart" options={{ label: 'Gráfico de Barras' }} list = { MyBarChart }/>
