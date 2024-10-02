@@ -15,7 +15,7 @@ const MyBarChart = () => {
   useEffect(() => {
     // Llamada a la API para obtener la lista de 'Donaciones'
     dataProvider.getList('donations', {
-      sort: { field: 'amount', order: 'ASC' },
+      sort: { field: 'name', order: 'ASC' },
       pagination: { page: 1, perPage: 10 }, // Ajusta la paginación según sea necesario
     })
     .then((response) => {
@@ -35,13 +35,13 @@ const MyBarChart = () => {
   }
 return (
   <ResponsiveContainer width="100%" height={400}>
-    <BarChart data={data}>
+    <BarChart data={data} layout='vertical'>
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name"/>
-      <YAxis dataKey="amount"/>
+      <XAxis type="number" dataKey="amount"/>
+      <YAxis type="category"dataKey="name"/>
       <Tooltip itemStyle={{backgroundColor: 'white', color: 'black'}}/>
       <Legend />
-      <Bar dataKey="amount" fill="#8884d8" label="Cantidad"/>
+      <Bar dataKey="amount" fill="#00D7C9" label="Cantidad"/>
     </BarChart>
   </ResponsiveContainer>
 );}
