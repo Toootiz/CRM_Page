@@ -20,9 +20,11 @@ const LoginPage = () => {
                 if (auth) {
                     const userRole = auth.role; // Obtener el rol del usuario
                     setIsLoggedIn(true); // Actualizar el estado de inicio de sesión
-                    setTimeout(() => {
-                        navigate('/'); // Redirigir basado en el rol usando navigate después de 1 segundo para simular carga
-                    }, 1000); // Simular el tiempo de carga antes de redirigir
+                    if (userRole === 'Lector') {
+                        window.location.href = '/index.html';
+                    } else if (userRole === 'Administrador') {
+                        navigate('/');
+                    }
                 } else {
                     notify('Error al obtener la información de usuario', { type: 'warning' });
                 }
