@@ -1,7 +1,7 @@
 import {List, Datagrid, TextField, EmailField, SimpleForm,
     TextInput, Create, required,regex,useEditController, Edit,
      EditButton, Title, NumberField, NumberInput,
-     DateField, DateInput} from 'react-admin';
+     DateField, DateInput, DeleteButton} from 'react-admin';
 
 
 const userFilters = [
@@ -19,6 +19,7 @@ export const DonationList= () => (
            <DateField source = "date" label = "Fecha"/>
            <TextField source = "type" label = "Tipo"/>
            <EditButton/>
+           <DeleteButton/>
        </Datagrid>
        
    </List>
