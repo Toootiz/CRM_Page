@@ -12,8 +12,11 @@ import HomePage from "./PaginaInicial";
 import DonaPage from "./PaginaDonaciones"; 
 import UserIcon from "@mui/icons-material/Group";
 import PostIcon from "@mui/icons-material/Book"
-import AdminDashboard from "./Dashboards/AdminDasboard";
+//import MyPieChart from "./pie_chart";
+import MyDashboard from "./DashBoards/DashBoard";
 import LecDashboard from "./Dashboards/LecDashboard";
+
+
 
 export const App = () => (
   <>
@@ -31,17 +34,19 @@ export const App = () => (
       authProvider={authProvider}
       i18nProvider={i18nProvider}
       loginPage={LoginPage}
+      dashboard={MyDashboard}
       theme={radiantLightTheme}
       darkTheme={radiantDarkTheme}
       // requireAuth ya no es necesario para HomePage y login
     >
+      <CustomRoutes>
+        <Route path="/admin-dashboard" element={<MyDashboard />} />
+        <Route path="/lec-dashboard" element={<LecDashboard />} />
+      </CustomRoutes>
+
       <Resource name="donations" options={{ label: 'Donaciones' }} list={DonationList} edit={DonationEdit} create={DonationCreate} icon={PostIcon} />
       <Resource name="users" options={{ label: 'Usuarios' }} list={UserList} edit={UserEdit} create={UserCreate} icon={UserIcon} />
 
-      <CustomRoutes>
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        <Route path="/lec-dashboard" element={<LecDashboard />} />
-      </CustomRoutes>
     </Admin>
   </>
 );
