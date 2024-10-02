@@ -1,6 +1,6 @@
 import {List, Datagrid, TextField, EmailField, SimpleForm,
      TextInput, Create, required,regex,useEditController, Edit,
-      EditButton, Title} from 'react-admin';
+      EditButton, Title, DeleteButton} from 'react-admin';
 
 
 const userFilters = [
@@ -17,6 +17,7 @@ export const UserList= () => (
             <EmailField source = "email" label="Email"/>
             <TextField source = "phone" label="Teléfono"/>
             <EditButton/>
+            <DeleteButton />
         </Datagrid>
     </List>
 );
