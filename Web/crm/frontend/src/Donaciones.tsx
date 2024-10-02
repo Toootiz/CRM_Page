@@ -1,7 +1,7 @@
 import {List, Datagrid, TextField, EmailField, SimpleForm,
     TextInput, Create, required,regex,useEditController, Edit,
      EditButton, Title, NumberField, NumberInput,
-     DateField} from 'react-admin';
+     DateField, DateInput} from 'react-admin';
 
 
 const userFilters = [
@@ -38,6 +38,7 @@ export const DonationEdit = () => {
                    validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.')]}/>
                    <TextInput source = "phone" label="Teléfono"/>
                    <NumberInput source = "amount" label ="Monto"/>
+                   <DateInput source = "date" label = "Fecha"/>
                    <TextInput source = "type" label="Tipo"/> 
                </SimpleForm>
            </Edit>
