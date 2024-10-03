@@ -1,4 +1,4 @@
-import './Css/Style_main_page.css';
+import '../Css/Style_main_page.css';
 
 const PaginaInicial = () => {
     return (

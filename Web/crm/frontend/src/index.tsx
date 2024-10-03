@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { App } from "./App";
-import HomePage from "./PaginaInicial";  // Página inicial
-import DonaPage from "./PaginaDonaciones";  // Página pública de donaciones 
+import HomePage from "./Páginas/PaginaInicial";  // Página inicial
+import DonaPage from "./Páginas/PaginaDonaciones";  // Página pública de donaciones 
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

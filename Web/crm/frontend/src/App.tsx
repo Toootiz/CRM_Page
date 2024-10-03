@@ -8,12 +8,11 @@ import { DonationList, DonationEdit, DonationCreate } from "./Recursos/Donacione
 import { UserList, UserEdit, UserCreate } from "./Recursos/Usuarios";
 import { i18nProvider } from "./Componentes/i18nProvider";
 import LoginPage from "./Login/LoginPage";
-import HomePage from "./PaginaInicial"; 
-import DonaPage from "./PaginaDonaciones"; 
+import HomePage from "./Páginas/PaginaInicial"; 
+import DonaPage from "./Páginas/PaginaDonaciones"; 
 import UserIcon from "@mui/icons-material/Group";
 import PostIcon from "@mui/icons-material/Book"
 import DashboardIcon from '@mui/icons-material/Dashboard';
-//import MyPieChart from "./pie_chart";
 import MyDashboard from "./DashBoards/DashBoard";
 import LecDashboard from "./Dashboards/LecDashboard";
 
@@ -33,10 +32,8 @@ export const App = () => (
       authProvider={authProvider}
       i18nProvider={i18nProvider}
       loginPage={LoginPage}
-      //dashboard={MyDashboard}
       theme={radiantLightTheme}
       darkTheme={radiantDarkTheme}
-      // requireAuth ya no es necesario para HomePage y login
     >
       <CustomRoutes>
         <Route path="/admin-dashboard" element={<MyDashboard />} />
