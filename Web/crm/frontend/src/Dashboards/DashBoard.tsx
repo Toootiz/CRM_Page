@@ -1,4 +1,3 @@
-import { CardContentInner } from 'react-admin';
 import DonationPieChart from '../Gráficas/pie_chart';
 import MyBarChart from '../Gráficas/Barras';
 import {Card, CardContent, Typography, Grid} from '@mui/material'
