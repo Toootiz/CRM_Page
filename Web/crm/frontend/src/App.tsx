@@ -1,7 +1,7 @@
 import './Css/Main.css';
 import { Admin, Resource, radiantLightTheme, radiantDarkTheme, CustomRoutes } from "react-admin";
 import { Layout } from "./Layout";
-import { Route, Navigate } from "react-router-dom";
+import { Route } from "react-router-dom";
 import dataProvider from "./Componentes/dataProvider";
 import authProvider from "./Componentes/authProvider";
 import { DonationList, DonationEdit, DonationCreate } from "./Recursos/Donaciones";
