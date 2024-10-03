@@ -27,8 +27,7 @@ const DonationsPage = () => {
 
     return (
         <div id="donations-body">
-            <div className="Donation_box">
-                <IconButton
+            <IconButton
                     style={{
                         position: 'absolute',
                         top: '10px',
@@ -39,7 +38,8 @@ const DonationsPage = () => {
                 >
                     <ArrowBackIcon/>
                 </IconButton>
-
+                
+            <div className="Donation_box">
                 <h2>Donación</h2>
                 <div className="inputBx" id="Name-field">
                     <TextField
