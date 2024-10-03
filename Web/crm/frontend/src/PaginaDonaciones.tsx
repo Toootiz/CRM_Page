@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import {  useNotify, SelectInput,  } from 'react-admin';
-import { TextField, Button, Select, MenuItem, InputLabel, FormControl  } from '@mui/material';
+import {  useNotify } from 'react-admin';
+import { TextField, Button, Select, MenuItem, InputLabel, FormControl, IconButton  } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import './Css/Donation_Page.css'; 
 
 const DonationsPage = () => {
+    const navigate = useNavigate();
 
     const handleDonation = () => {
         const notify = useNotify();
-        const navigate = useNavigate();
         console.log('Donation');
         notify('Donación realizada con éxito');
         //navigate('/'); // Redirigir al usuario a la página principal después de realizar la donación
@@ -20,10 +21,25 @@ const DonationsPage = () => {
     const [donationAmount, setDonationAmount] = useState(''); 
     const [donationType, setDonationType] = useState('');
 
+    const handleGoBack = () => {
+        navigate('/');
+    }
 
     return (
         <div id="donations-body">
             <div className="Donation_box">
+                <IconButton
+                    style={{
+                        position: 'absolute',
+                        top: '10px',
+                        left: '10px',
+                        color: 'white',
+                    }}
+                    onClick={handleGoBack} // Cambiado de onAbort a onClick para manejar la navegación
+                >
+                    <ArrowBackIcon/>
+                </IconButton>
+
                 <h2>Donación</h2>
                 <div className="inputBx" id="Name-field">
                     <TextField
