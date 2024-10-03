@@ -22,10 +22,11 @@ const LoginPage = () => {
                     const userRole = auth.role; // Obtener el rol del usuario
                     setIsLoggedIn(true); // Actualizar el estado de inicio de sesión
                     if (userRole === 'Lector') {
-                        //window.location.href = '/index.html';
                         navigate('/lec-dashboard'); // Redirigir a la página de lector si el rol es 'Lector'
                     } else if (userRole === 'Administrador') {
                         navigate('/admin-dashboard'); // Redirigir a la página de administrador si el rol es 'Administrador'
+                    } else {
+                        navigate('/'); // Redirigir a la página principal si no se reconoce el rol
                     }
                 } else {
                     notify('Error al obtener la información de usuario', { type: 'warning' });
@@ -37,7 +38,7 @@ const LoginPage = () => {
     };
 
     const handleGoBack = () => {
-        window.location.href = '/index.html'; // Navegar a la página principal
+        navigate('/');
     }
 
     // Si el usuario ha iniciado sesión, no mostrar los elementos de la página de login
@@ -54,9 +55,9 @@ const LoginPage = () => {
                     left: '10px',
                     color: 'white',
                 }}
-                onAbort={handleGoBack}
-                >
-                    <ArrowBackIcon/>
+                onClick={handleGoBack} // Cambiado de onAbort a onClick para manejar la navegación
+            >
+                <ArrowBackIcon/>
             </IconButton> 
                        
             <div className="ring">

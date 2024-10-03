@@ -12,6 +12,7 @@ interface AuthResponse {
     role: string;
 }
 
+
 const authProvider = {
     login: ({ username, password }: LoginParams): Promise<AuthResponse> => { // Comunicación con el backend en el proceso de login
         return new Promise((resolve, reject) => {
