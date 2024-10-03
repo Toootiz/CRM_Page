@@ -24,7 +24,6 @@ export const App = () => (
     <CustomRoutes noLayout>
       <Route path="/inicio" element={<HomePage />} /> 
       <Route path="/donaciones" element={<DonaPage />} />
-      <Route path="/login" element={<LoginPage />} />     
     </CustomRoutes>
 
     {/* Rutas protegidas, requieren autenticación */}
