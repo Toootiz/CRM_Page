@@ -1,7 +1,7 @@
 import './Css/Main.css';  // Este es el CSS general para toda la app
 import { Admin, Resource, radiantLightTheme, radiantDarkTheme, CustomRoutes } from "react-admin";
 import { Layout } from "./Layout";
-import { Route } from "react-router-dom";
+import { Route, Navigate } from "react-router-dom";
 import dataProvider from "./Componentes/dataProvider";
 import authProvider from "./Componentes/authProvider";
 import { DonationList, DonationEdit, DonationCreate } from "./Recursos/Donaciones";
@@ -29,6 +29,7 @@ export const App = () => (
     darkTheme={radiantDarkTheme}
   >
     <CustomRoutes>
+      <Route path="/" element={<Navigate to="/admin-dashboard"/>} />
       <Route path="/admin-dashboard" element={<MyDashboard />} />
       <Route path="/lec-dashboard" element={<LecDashboard />} />
     </CustomRoutes>
