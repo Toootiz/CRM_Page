@@ -76,7 +76,7 @@ exports.updateDonacion = async (req, res) => {
             email: req.body.email,
             phone: req.body.phone,
             amount: req.body.amount,
-            date,
+            date: req.body.date,
             type: req.body.type
         }, { new: true });
         if (updatedDonacion) {
@@ -93,7 +93,8 @@ exports.updateDonacion = async (req, res) => {
             res.status(404).json({ error: 'Donacion no encontrada' });
         }
     } catch (err) {
-        res.status(500).json({ error: 'Error al actualizar la donacion' });
+        console.error(err);
+        res.status(500).json({ error: 'Error al actualizar la donacion', details: err });
     }
 };
 // Eliminar un post por ID
