@@ -1,12 +1,11 @@
 import {List, Datagrid, TextField, EmailField, SimpleForm,
      TextInput, Create, required,regex,useEditController, Edit,
-      EditButton, Title, DeleteButton} from 'react-admin';
+      EditButton, Title, DeleteButton, PasswordInput, SelectInput} from 'react-admin';
 
 
 const userFilters = [
     <TextInput source = "q" label = "Busqueda" alwaysOn />,
 ];
-
 
 export const UserList= () => (
     <List filters = {userFilters}>
@@ -27,12 +26,11 @@ export const UserEdit = () => {
     if (isPending) return null;
     return(
         <div>
-            <Edit>
+            <Edit redirect='/users'>
                 <Title title= " - Editando Usuario"/>
                 <SimpleForm onSubmit={save}>
-                    <TextInput disabled source = "id" InputProps = {{disabled: true}} label= "ID"/>
                     <TextInput source = "username" label= "Nombre de Usuario"/>
-                    <TextInput source = "role" label="Rol"/>
+                    <SelectInput source = "role" label="Rol" choices={[{id: 'Lector', name: 'Lector'}, {id: 'Administrador', name: 'Administrador'}]}/>
                     <TextInput source = "name" label="Nombre"/>
                     <TextInput source = "email" label="Email"
                     validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.')]}/>
@@ -46,16 +44,15 @@ export const UserEdit = () => {
 
 export const UserCreate = () => {
     return (
-    
-    <Create>
-        <SimpleForm>
-            <TextInput source = "username" label= "Nombre de Usuario"/>
-            <TextInput source = "password" label="Contraseña"/>
-            <TextInput source = "role" label="Rol"/>
-            <TextInput source = "name"label="Nombre"/>
-            <TextInput source = "email" label="Email"
-            validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.')]}/>
-            <TextInput source = "phone" label="Teléfono"/>
-        </SimpleForm>
-    </Create>
+        <Create redirect='/users'>
+            <SimpleForm>
+                <TextInput source = "username" label= "Nombre de Usuario"/>
+                <PasswordInput source = "password" label="Contraseña"/>
+                <SelectInput source = "role" label="Rol" choices={[{id: 'Lector', name: 'Lector'}, {id: 'Administrador', name: 'Administrador'}]} />
+                <TextInput source = "name"label="Nombre"/>
+                <TextInput source = "email" label="Email"
+                validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.')]}/>
+                <TextInput source = "phone" label="Teléfono"/>
+            </SimpleForm>
+        </Create>
 )};
