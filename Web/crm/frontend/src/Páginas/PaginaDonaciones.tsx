@@ -3,15 +3,31 @@ import {  useNotify } from 'react-admin';
 import { TextField, Button, Select, MenuItem, InputLabel, FormControl, IconButton  } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import axios from 'axios';
 import '../Css/Donation_Page.css'; 
 
 const DonationsPage = () => {
     const navigate = useNavigate();
+    const notify = useNotify();
 
-    const handleDonation = () => {
-        const notify = useNotify();
-        console.log('Donation');
-        notify('Donación realizada con éxito');
+    const handleDonation = async () => {
+        try{
+            const response = await axios.post('https://localhost:5001/api/donations/create', {
+                name: name,
+                email: email,
+                phone: phone,
+                amount: donationAmount,
+                type: donationType,
+            });
+            console.log(response);
+            console.log('Donation');
+            notify('Donación realizada con éxito', { type: 'success' });
+            navigate('/');
+        }catch(error){
+            console.error('Error en la donación',error);
+            notify('Error al realizar la donación', { type: 'error' });
+        }
+        
         //navigate('/'); // Redirigir al usuario a la página principal después de realizar la donación
     };
 
@@ -137,9 +153,9 @@ const DonationsPage = () => {
                          // Estilo del select
                     >
                         
-                        <MenuItem value="T">Tarjeta</MenuItem>
-                        <MenuItem value="E">Efectivo</MenuItem>
-                        <MenuItem value="Es">Especie</MenuItem>
+                        <MenuItem value="Tarjeta">Tarjeta</MenuItem>
+                        <MenuItem value="Efectivo">Efectivo</MenuItem>
+                        <MenuItem value="Especie">Especie</MenuItem>
 
                     </Select>
                 </FormControl>

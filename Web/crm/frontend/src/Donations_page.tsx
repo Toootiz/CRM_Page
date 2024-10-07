@@ -12,14 +12,14 @@ const DonationsPage = () => {
 
     const handleDonation = () => {
         const notify = useNotify();
-        const navigate = useNavigate();
+        
         console.log('Donation');
         // Lógica para enviar la donación al servidor
         // Aquí se puede realizar una petición POST a la API para guardar la donación en la base de datos
         // Se puede utilizar fetch, axios u otra librería para realizar la petición
         // Una vez que la petición se complete, se puede mostrar una notificación al usuario
         notify('Donación realizada con éxito');
-        navigate('/'); // Redirigir al usuario a la página principal después de realizar la donación
+         // Redirigir al usuario a la página principal después de realizar la donación
     };
 
     const [name, setname] = useState('');
