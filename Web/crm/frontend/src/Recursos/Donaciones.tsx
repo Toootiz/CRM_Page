@@ -1,7 +1,7 @@
 import {List, Datagrid, TextField, EmailField, SimpleForm,
     TextInput, Create, required,regex,useEditController, Edit,
      EditButton, Title, NumberField, NumberInput,
-     DateField, DateTimeInput, DeleteButton, SelectInput} from 'react-admin';
+     DateField, DateInput, DeleteButton, SelectInput} from 'react-admin';
 
 const userFilters = [
    <TextInput source = "q" label = "Busqueda" alwaysOn />,
@@ -36,7 +36,7 @@ export const DonationEdit = () => {
                    validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.')]}/>
                    <TextInput source = "phone" label="Teléfono"/>
                    <NumberInput source = "amount" label ="Monto"/>
-                   <DateTimeInput source = "date" label = "Fecha"/>
+                   <DateInput source = "date" label = "Fecha"/>
                    <SelectInput source = "type" label="Tipo" choices={[{id: 'Tarjeta', name: 'Tarjeta'}, {id: 'Efectivo', name: 'Efectivo'}, {id: 'Especie', name: 'Especie'}]}/> 
                </SimpleForm>
            </Edit>
@@ -55,7 +55,7 @@ export const DonationCreate = () => {
            validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.')]}/>
            <TextInput source = "phone" label = "Teléfono"/>
            <NumberInput source = "amount" label = "Monto"/>
-           <DateTimeInput source = "date" label = "Fecha"/>
+           <DateInput source = "date" label = "Fecha"/>
            <SelectInput source = "type" label = "Tipo" choices={[{id: 'Tarjeta', name: 'Tarjeta'}, {id: 'Efectivo', name: 'Efectivo'}, {id: 'Especie', name: 'Especie'}]}/>
        </SimpleForm>
    </Create>
