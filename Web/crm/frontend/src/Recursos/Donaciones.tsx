@@ -1,13 +1,11 @@
 import {List, Datagrid, TextField, EmailField, SimpleForm,
     TextInput, Create, required,regex,useEditController, Edit,
      EditButton, Title, NumberField, NumberInput,
-     DateField, DateInput, DeleteButton} from 'react-admin';
-
+     DateField, DateInput, DeleteButton, SelectInput} from 'react-admin';
 
 const userFilters = [
    <TextInput source = "q" label = "Busqueda" alwaysOn />,
 ];
-
 
 export const DonationList= () => (
    <List filters = {userFilters}>
@@ -16,7 +14,7 @@ export const DonationList= () => (
            <EmailField source = "email" label= "Email"/>
            <TextField source = "phone" label="Teléfono"/>
            <NumberField source = "amount" label= "Monto"/>
-           <DateField source = "date" label = "Fecha"/>
+           <DateField source = "date" label = "Fecha" locales = 'es-MX'/>
            <TextField source = "type" label = "Tipo"/>
            <EditButton/>
            <DeleteButton/>
@@ -30,17 +28,16 @@ export const DonationEdit = () => {
    if (isPending) return null;
    return(
        <div>
-           <Edit>
+           <Edit redirect='/donations'>
                <Title title= " - Editando Usuario"/>
                <SimpleForm onSubmit={save}>
-                   <TextInput disabled source = "id" label= "ID" InputProps = {{disabled: true}}/>
                    <TextInput source = "name" label= "Nombre"/>
                    <TextInput source = "email"label = "Email"
                    validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.')]}/>
                    <TextInput source = "phone" label="Teléfono"/>
                    <NumberInput source = "amount" label ="Monto"/>
                    <DateInput source = "date" label = "Fecha"/>
-                   <TextInput source = "type" label="Tipo"/> 
+                   <SelectInput source = "type" label="Tipo" choices={[{id: 'Tarjeta', name: 'Tarjeta'}, {id: 'Efectivo', name: 'Efectivo'}, {id: 'Especie', name: 'Especie'}]}/> 
                </SimpleForm>
            </Edit>
        </div>
@@ -51,14 +48,15 @@ export const DonationEdit = () => {
 export const DonationCreate = () => {
    return (
    
-   <Create>
+   <Create redirect='/donations'>
        <SimpleForm>
            <TextInput source = "name" label = "Nombre"/>
            <TextInput source = "email" label = "Email"
            validate={[required(), regex(/.+@.+\..+/, 'El email debe contener un "@" y un dominio válido.')]}/>
            <TextInput source = "phone" label = "Teléfono"/>
            <NumberInput source = "amount" label = "Monto"/>
-           <TextInput source = "type" label = "Tipo"/>
+           <DateInput source = "date" label = "Fecha"/>
+           <SelectInput source = "type" label = "Tipo" choices={[{id: 'Tarjeta', name: 'Tarjeta'}, {id: 'Efectivo', name: 'Efectivo'}, {id: 'Especie', name: 'Especie'}]}/>
        </SimpleForm>
    </Create>
 )};
