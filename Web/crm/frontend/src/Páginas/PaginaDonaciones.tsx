@@ -1,15 +1,17 @@
 import { useState } from 'react';
-import {  useNotify } from 'react-admin';
 import { TextField, Button, Select, MenuItem, InputLabel, FormControl, IconButton  } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
 import '../Css/Donation_Page.css'; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const DonationsPage = () => {
+    
     const navigate = useNavigate();
-    const notify = useNotify();
-
+    
     const handleDonation = async () => {
         try{
             const response = await axios.post('https://localhost:5001/api/donations/create', {
@@ -20,12 +22,17 @@ const DonationsPage = () => {
                 type: donationType,
             });
             console.log(response);
-            console.log('Donation');
-            notify('Donación realizada con éxito', { type: 'success' });
-            navigate('/');
+            toast.success('Donación realizada con éxito. Regresando a pagina inicial', { position: "top-center" ,  autoClose: 3000});
+            
+            setTimeout(() => {
+                navigate('/'); // Cambia '/otra-pagina' por la ruta a la que quieras redirigir
+            }, 1000);
+            
+            
+            
         }catch(error){
             console.error('Error en la donación',error);
-            notify('Error al realizar la donación', { type: 'error' });
+            toast.error('Error al realizar la donación', { position: "top-center",  hideProgressBar: true , autoClose: 3000});
         }
         
         //navigate('/'); // Redirigir al usuario a la página principal después de realizar la donación
@@ -142,7 +149,7 @@ const DonationsPage = () => {
 
                 <div className="inputBx" id="Type-field">
                 <FormControl fullWidth >
-                    <InputLabel style={{ color: 'rgba(255, 255, 255, 0.75)', paddingLeft: '25px'  }}>
+                    <InputLabel style={{ color: 'rgba(255, 255, 255, 0.75)' }} >
                         Tipo de donación
                         
                     </InputLabel>
@@ -174,9 +181,11 @@ const DonationsPage = () => {
                         >
                             Donar
                         </Button>
+                        
                     </div>
-            </div>
 
+            </div>
+            <ToastContainer />
         </div>
     );
 
