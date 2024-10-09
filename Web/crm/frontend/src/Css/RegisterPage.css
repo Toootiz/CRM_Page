@@ -7,7 +7,7 @@
 }
 
 /* Cambiar el body por un id específico */
-#donations-body {
+#lregister-body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,7 +17,7 @@
   overflow: hidden;
 }
 
-.Donation_box {
+.register {
   position: absolute;
   width: 300px;
   height: 100%;
@@ -27,15 +27,15 @@
   flex-direction: column;
   gap: 20px;
 }
-.Donation_box h2 {
+.register h2 {
   font-size: 2em;
   color: #fff;
 }
-.Donation_box .inputBx {
+.register .inputBx {
   position: relative;
   width: 100%;
 }
-.Donation_box .inputBx input {
+.register .inputBx input {
   position: relative;
   width: 100%;
   padding: 12px 18px;
@@ -47,20 +47,7 @@
   box-shadow: none;
   outline: none;
 }
-
-.Donation_box #Type-field {
-  position: relative;
-  width: 100%;
-  background: transparent;
-  border: 2px solid #ffffff;
-  border-radius: 40px;
-  font-size: 1.2em;
-  color: #fff;
-  box-shadow: none;
-  outline: none;
-}
-
-.Donation_box .inputBx input[type="submit"] {
+.register .inputBx input[type="submit"] {
   width: 100%;
   background: #0078ff;
   background: linear-gradient(45deg,#ff357a, #fff172);
@@ -69,10 +56,10 @@
   
 }
 
-.Donation_box .inputBx input::placeholder {
+.register .inputBx input::placeholder {
   color: rgba(255, 255, 255, 0.75);
 }
-.Donation_box .links {
+.register .links {
   position: relative;
   width: 100%;
   display: flex;
@@ -80,7 +67,7 @@
   justify-content: space-between;
   padding: 0 20px;
 }
-.Donation_box .links a {
+.register .links a {
   color: #fff;
   text-decoration: none;
 }

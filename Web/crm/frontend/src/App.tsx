@@ -10,6 +10,7 @@ import { i18nProvider } from "./Componentes/i18nProvider";
 import LoginPage from "./Login/LoginPage";
 import HomePage from "./Páginas/PaginaInicial"; 
 import DonaPage from "./Páginas/PaginaDonaciones"; 
+import RegisterPage from "./Páginas/RegistroUsuario"
 import UserIcon from "@mui/icons-material/Group";
 import PostIcon from "@mui/icons-material/Book"
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -23,6 +24,7 @@ export const App = () => (
     <CustomRoutes noLayout>
       <Route path="/inicio" element={<HomePage />} /> 
       <Route path="/donaciones" element={<DonaPage />} />
+      <Route path='/registro' element={<RegisterPage/>} />
     </CustomRoutes>
 
     {/* Rutas protegidas, requieren autenticación */}
