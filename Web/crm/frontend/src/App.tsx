@@ -1,5 +1,5 @@
 import './Css/Main.css';
-import { Admin, Resource, CustomRoutes } from "react-admin";
+import { Admin, Resource, CustomRoutes, radiantLightTheme, radiantDarkTheme } from "react-admin";
 import { Layout } from "./Layout";
 import { Route } from "react-router-dom";
 import dataProvider from "./Componentes/dataProvider";
@@ -41,6 +41,8 @@ export const App = () => {
         authProvider={authProvider}
         i18nProvider={i18nProvider}
         loginPage={LoginPage}
+        theme={radiantLightTheme}
+        darkTheme={radiantDarkTheme}
       >
         {/* Rutas condicionales según el rol del usuario */}
         <CustomRoutes>
