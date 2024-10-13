@@ -16,8 +16,8 @@ const UserRegister = () => {
         try{
             const response = await axios.post('https://localhost:5001/api/users/register',{
                 username: username,
-                name: name,
                 password: password,
+                name: name,
                 email: email,
                 phone: phone,
             });
@@ -181,6 +181,7 @@ const UserRegister = () => {
                         </Button>
                     </div>
                 </div>
+                <ToastContainer/>
             </div>
     );
 };
