@@ -1,0 +1,15 @@
+/* Para ocultar el botón de menú */
+.RaAppBar-menuButton {
+    display: none; /* Esto elimina el botón del DOM visualmente */
+  }
+  
+  /* Para eliminar el ícono del botón */
+  .RaSidebarToggleButton-menuButtonIconClosed {
+    display: none; /* Esto elimina el ícono dentro del botón */
+  }
+  
+  /* Para eliminar el efecto de ripple (si lo tiene) */
+  .MuiTouchRipple-root {
+    display: none; /* Esto elimina el efecto ripple */
+  }
+  

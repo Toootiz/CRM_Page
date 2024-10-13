@@ -28,9 +28,9 @@ const DonationsPage = () => {
             console.log(response);
             toast.success('Donación realizada con éxito. Regresando a página inicial', { position: "top-center", autoClose: 3000 });
             
-            //setTimeout(() => {
-            //   navigate('/');
-            //}, 1000);
+            setTimeout(() => {
+               navigate('/');
+            }, 1000);
         } catch (error) {
             console.error('Error en la donación', error);
             toast.error('Error al realizar la donación', { position: "top-center", hideProgressBar: true, autoClose: 3000 });

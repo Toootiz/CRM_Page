@@ -16,10 +16,13 @@ const LoginPage = () => {
     const handleLogin = () => {
         login({ username, password })
             .then(() => {
+                
                 const authString = localStorage.getItem('auth');
                 const auth = authString ? JSON.parse(authString) : null; // Obtener la información de autenticación del localStorage
                 if (auth) {
                     const userRole = auth.role; // Obtener el rol del usuario
+                    const userEmail = auth.email; // Obtener el email del usuario
+                    localStorage.setItem('userEmail', userEmail); // Guardar el email en localStorage
                     setIsLoggedIn(true); // Actualizar el estado de inicio de sesión
                     if (userRole === 'Lector') {
                         navigate('/lec-dashboard'); // Redirigir a la página de lector si el rol es 'Lector'
@@ -28,6 +31,7 @@ const LoginPage = () => {
                     } else {
                         navigate('/'); // Redirigir a la página principal si no se reconoce el rol
                     }
+                    window.location.reload();
                 } else {
                     notify('Error al obtener la información de usuario', { type: 'warning' });
                 }
@@ -36,6 +40,13 @@ const LoginPage = () => {
                 notify('Credenciales inválidas', { type: 'warning' }); // Mostrar notificación de error si las credenciales no son válidas
             });
     };
+
+    const handleKeyPress = (event: { key: string; }) => {
+        if (event.key === 'Enter') {
+            handleLogin(); // Llamar a handleLogin si se presiona la tecla Enter
+        }
+    };
+
 
     const handleGoBack = () => {
         navigate('/');
@@ -93,6 +104,7 @@ const LoginPage = () => {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)} 
+                            
                             fullWidth
                             InputProps={{
                                 disableUnderline: true,

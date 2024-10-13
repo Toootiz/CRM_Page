@@ -84,6 +84,46 @@ exports.getDonacionById = async (req, res) => {
     }
 };
 
+
+// Obtener donaciones por correo electrónico
+exports.getDonacionesByEmail = async (req, res) => {
+    try {
+        const { email } = req.params;  // Obtener el email desde los parámetros de la URL
+        console.log(`Buscando donaciones con email: ${email}`);
+
+        // Filtrar las donaciones por email
+        const donaciones = await Donaciones.find({ email });
+
+        if (donaciones.length > 0) {
+            // Si se encuentran donaciones, procesarlas
+            const donacionesConId = donaciones.map(donacion => ({
+                id: donacion._id,
+                name: donacion.name,
+                email: donacion.email,
+                phone: donacion.phone,
+                amount: donacion.amount,
+                date: donacion.date,
+                type: donacion.type
+            }));
+
+            console.log(`Se encontraron ${donaciones.length} donaciones para el correo: ${email}`);
+
+            // Asegurarse de enviar siempre X-Total-Count
+            res.set('X-Total-Count', donaciones.length);
+            res.set('Access-Control-Expose-Headers', 'X-Total-Count');  // Asegurar que la cabecera esté expuesta
+            res.json(donacionesConId);  // Enviar las donaciones encontradas al cliente
+        } else {
+            console.log(`No se encontraron donaciones para el correo: ${email}`);
+            res.status(404).json({ error: `No se encontraron donaciones para el correo ${email}` });
+        }
+    } catch (err) {
+        console.error('Error al obtener las donaciones:', err);
+        res.status(500).json({ error: 'Error al obtener las donaciones por correo' });
+    }
+};
+
+
+
 // Crear una nueva donación
 exports.createDonacion = async (req, res) => {
     console.log('Recibiendo datos de nueva donación:', req.body);
