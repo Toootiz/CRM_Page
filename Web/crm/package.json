@@ -1,0 +1,25 @@
+{
+    "scripts": {
+      "start": "concurrently --names \"BACK,FRONT\" -c \"pink,yellow\" \"npm run start:backend\" \"npm run start:frontend\"",
+      "start:backend": "cd backend && node index.js",
+      "start:frontend": "cd frontend && npm run dev",
+      "act": "concurrently --names \"CRM,BACK,FRONT\" -c \"red,purple,white\" \"npm i\" \"npm run install:backend\" \"npm run install:frontend\"",
+      "install:frontend": "cd frontend && npm i",
+      "install:backend": "cd frontend && npm i",
+      "dumpdb": "mongodump --db SandersDB --out \"\\crm\\SandersDB\"",
+      "setdb": "mongorestore --nsInclude SandersDB \"C:\\Users\\gabom\\OneDrive\\Documents\\Tec\\5to Semestre\\Bloque\\E2\\web\\crm\\SandersDB\\\""
+    },
+    "dependencies": {
+      "axios": "^1.7.7",
+      "concurrent": "^0.3.2",
+      "date-fns": "^4.1.0",
+      "framer-motion": "^11.9.0",
+      "moment-timezone": "^0.5.45",
+      "ra-data-simple-rest": "^5.2.0",
+      "react-toastify": "^10.0.5",
+      "recharts": "^2.12.7"
+    },
+    "devDependencies": {
+      "concurrently": "^8.2.2"
+    }
+  }
