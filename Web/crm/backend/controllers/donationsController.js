@@ -26,7 +26,6 @@ const sendThankYouEmail = async (email, name, donationAmount) => {
     };
 
     try {
-        console.log(`Enviando correo a: ${email}`);
         const info = await transporter.sendMail(mailOptions);
         console.log('Correo enviado correctamente: ' + info.response);
     } catch (error) {
@@ -38,7 +37,6 @@ const sendThankYouEmail = async (email, name, donationAmount) => {
 // Obtener todas las donaciones
 exports.getAllDonaciones = async (req, res) => {
     try {
-        console.log('Obteniendo todas las donaciones...');
         const donaciones = await Donaciones.find();
         const donacionesConId = donaciones.map(donaciones => ({
             id: donaciones._id,
@@ -49,7 +47,6 @@ exports.getAllDonaciones = async (req, res) => {
             date: donaciones.date,
             type: donaciones.type
         }));
-        console.log(`Se encontraron ${donaciones.length} donaciones.`);
         res.set('X-Total-Count', donaciones.length);
         res.json(donacionesConId);
     } catch (err) {
@@ -64,7 +61,6 @@ exports.getDonacionById = async (req, res) => {
         console.log(`Buscando donación con ID: ${req.params.id}`);
         const donacion = await Donaciones.findById(req.params.id);
         if (donacion) {
-            console.log(`Donación encontrada: ${donacion}`);
             res.json({
                 id: donacion._id,
                 name: donacion.name,
@@ -106,14 +102,11 @@ exports.getDonacionesByEmail = async (req, res) => {
                 type: donacion.type
             }));
 
-            console.log(`Se encontraron ${donaciones.length} donaciones para el correo: ${email}`);
-
-            // Asegurarse de enviar siempre X-Total-Count
-            res.set('X-Total-Count', donaciones.length);
+            // Asegurarse de enviar siempre X-Totalg-Count
+            res.set('X-Total-Count', donaciones.lenth);
             res.set('Access-Control-Expose-Headers', 'X-Total-Count');  // Asegurar que la cabecera esté expuesta
             res.json(donacionesConId);  // Enviar las donaciones encontradas al cliente
         } else {
-            console.log(`No se encontraron donaciones para el correo: ${email}`);
             res.status(404).json({ error: `No se encontraron donaciones para el correo ${email}` });
         }
     } catch (err) {
@@ -138,7 +131,6 @@ exports.createDonacion = async (req, res) => {
         });
 
         const donacionGuardada = await nuevaDonacion.save();
-        console.log('Donación guardada correctamente:', donacionGuardada);
 
         // Enviar el correo de agradecimiento
         await sendThankYouEmail(donacionGuardada.email, donacionGuardada.name, donacionGuardada.amount);
@@ -161,7 +153,6 @@ exports.createDonacion = async (req, res) => {
 
 // Actualizar una donación por ID
 exports.updateDonacion = async (req, res) => {
-    console.log(`Actualizando donación con ID: ${req.params.id}`);
     try {
         const updatedDonacion = await Donaciones.findByIdAndUpdate(req.params.id, {
             name: req.body.name,
@@ -173,7 +164,6 @@ exports.updateDonacion = async (req, res) => {
         }, { new: true });
 
         if (updatedDonacion) {
-            console.log('Donación actualizada correctamente:', updatedDonacion);
             res.json({
                 id: updatedDonacion._id,
                 name: updatedDonacion.name,
@@ -184,7 +174,6 @@ exports.updateDonacion = async (req, res) => {
                 type: updatedDonacion.type
             });
         } else {
-            console.log('Donación no encontrada para actualizar');
             res.status(404).json({ error: 'Donación no encontrada' });
         }
     } catch (err) {
@@ -195,14 +184,11 @@ exports.updateDonacion = async (req, res) => {
 
 // Eliminar una donación por ID
 exports.deleteDonacion = async (req, res) => {
-    console.log(`Eliminando donación con ID: ${req.params.id}`);
     try {
         const deletedDonacion = await Donaciones.findByIdAndDelete(req.params.id);
         if (deletedDonacion) {
-            console.log('Donación eliminada correctamente:', deletedDonacion);
             res.json({ id: deletedDonacion._id });
         } else {
-            console.log('Donación no encontrada para eliminar');
             res.status(404).json({ error: 'Donación no encontrada' });
         }
     } catch (err) {
