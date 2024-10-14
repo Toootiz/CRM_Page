@@ -14,7 +14,7 @@ const MyDashboard = () => (
             transition={{duration: 0.5}}>
                 <Card sx={{borderRadius: '16px',minHeight: '600px'}}> {/*Este compomente es el cuadro de almacenamiento*/}
                     <CardContent>
-                        <Typography variant='h6'>Origen de donaciones</Typography>
+                        <Typography variant='h6'>Cantidad donada por usuario</Typography>
                         <MyBarChart/>
                     </CardContent>
                 </Card>
@@ -27,7 +27,7 @@ const MyDashboard = () => (
             transition={{duration: 0.5, delay: 0.2}}>
                 <Card sx={{borderRadius:'16px',  minHeight: '671px'}}>
                     <CardContent>
-                        <Typography variant='h6'>Cantidad donada por usuario</Typography>
+                        <Typography variant='h6'>Origen de donaciones</Typography>
                         <DonationPieChart/>
                     </CardContent>
                 </Card>
