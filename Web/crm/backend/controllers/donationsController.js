@@ -85,7 +85,6 @@ exports.getDonacionById = async (req, res) => {
 exports.getDonacionesByEmail = async (req, res) => {
     try {
         const { email } = req.params;  // Obtener el email desde los parámetros de la URL
-        console.log(`Buscando donaciones con email: ${email}`);
 
         // Filtrar las donaciones por email
         const donaciones = await Donaciones.find({ email });
