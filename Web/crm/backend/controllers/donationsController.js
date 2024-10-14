@@ -19,12 +19,34 @@ const sendThankYouEmail = async (email, name, donationAmount) => {
         to: email,
         subject: 'Gracias por tu donación',
         html: `
-            <p>Estimado ${name}, ¡gracias por tu donación de $${donationAmount} !</p>
-            <p>Esta donación será utilizada para la elaboración, instalación y mantenimiento de un sistema de recolección de agua fluvial, la cual le permitirá a familias en situaciones vulnerables a tener una mejor vida, con más y mejores oportunidades.</p>
+        <div style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; text-align: center;">
+        <div style="background-color: #ffffff; padding: 20px; border-radius: 10px; max-width: 600px; margin: auto; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+            <h2 style="color: #333;">¡Gracias por tu donación, ${name}! 🙏💙</h2>
+            <p style="font-size: 16px; color: #333;">Tu generosa donación de <strong>$${donationAmount}</strong> hará una gran diferencia. 💧🌍</p>
 
-            <p>De corazón, la Fundación Sanders te lo agradece! </p>
-            
-            <img src="https://sanders.com.mx/wp-content/uploads/2022/08/5.png" alt="Gracias" />
+            <p style="font-size: 16px; color: #555; line-height: 1.5;">
+                Con tu valioso aporte, estaremos más cerca de implementar un sistema de recolección de agua fluvial que cambiará vidas. Este sistema permitirá a familias en situación de vulnerabilidad acceder a agua limpia, mejorando significativamente su calidad de vida y brindándoles más oportunidades de desarrollo. 🌱👨‍👩‍👧‍👦
+            </p>
+
+            <p style="font-size: 16px; color: #555; line-height: 1.5;">
+                Gracias a personas como tú, podemos seguir llevando esperanza y soluciones tangibles a quienes más lo necesitan. ✨
+            </p>
+
+            <p style="font-size: 16px; color: #333;">
+                De todo corazón, la Fundación Sanders te lo agradece profundamente. ❤️
+            </p>
+
+            <p style="font-size: 14px; color: #777;">Atentamente,<br>El equipo de Fundación Sanders</p>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <img src="https://sanders.com.mx/wp-content/uploads/2022/08/5.png" alt="Gracias" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1);" />
+            </div>
+        </div>
+
+        <div style="max-width: 600px; margin: 20px auto; text-align: center; color: #999; font-size: 12px;">
+            <p>Si tienes alguna duda o necesitas más información, no dudes en <a href="mailto:info@sanders.com.mx" style="color: #555; text-decoration: none;">contactarnos</a>.</p>
+        </div>
+    </div>
 	
         `
     };
