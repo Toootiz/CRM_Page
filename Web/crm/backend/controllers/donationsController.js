@@ -19,9 +19,13 @@ const sendThankYouEmail = async (email, name, donationAmount) => {
         to: email,
         subject: 'Gracias por tu donación',
         html: `
-            <p>¡Hola ${name}!</p>
-            <p>Gracias por tu generosa donación de $${donationAmount}.</p>
-            <p>Tu apoyo es muy importante para nosotros.</p>
+            <p>Estimado ${name}, ¡gracias por tu donación de $${donationAmount} !</p>
+            <p>Esta donación será utilizada para la elaboración, instalación y mantenimiento de un sistema de recolección de agua fluvial, la cual le permitirá a familias en situaciones vulnerables a tener una mejor vida, con más y mejores oportunidades.</p>
+
+            <p>De corazón, la Fundación Sanders te lo agradece! </p>
+            
+            <img src="https://sanders.com.mx/wp-content/uploads/2022/08/5.png" alt="Gracias" />
+	
         `
     };
 
