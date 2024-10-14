@@ -19,6 +19,21 @@ const httpClient = (url: string, options: fetchUtils.Options = {}): Promise<any>
     return fetchUtils.fetchJson(url, options);
 };
 
-const dataProvider: DataProvider = jsonServerProvider(API_URL, httpClient);
+const jsonProvider = jsonServerProvider(API_URL, httpClient);
+
+const dataProvider: DataProvider = {
+    ...jsonProvider,
+    getList: (resource, params) => {
+        const auth = JSON.parse(localStorage.getItem('auth') || 'null');
+        if (resource === 'misdonaciones' && auth && auth.email) {
+            // Si es un lector, ajustar la URL para buscar por email del usuario
+            const email = auth.email;
+            return jsonProvider.getList(`donations/email/${email}`, params);
+        }
+        return jsonProvider.getList(resource, params);  // Para otros casos como administradores
+    },
+};
+
+
 
 export default dataProvider;

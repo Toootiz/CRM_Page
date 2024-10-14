@@ -3,11 +3,14 @@ const router = express.Router();
 const donationController = require('../controllers/donationsController');
 const authenticateJWT = require('../middleware/auth');
 
-router.get('/', authenticateJWT, donationController.getAllDonaciones); // Obtener todos los posts
-router.get('/:id', authenticateJWT, donationController.getDonacionById); // Obtener un post por ID
-router.post('/', authenticateJWT, donationController.createDonacion);// Crear un nuevo post
+// Otras rutas existentes
+router.get('/', authenticateJWT, donationController.getAllDonaciones);
+router.get('/:id', authenticateJWT, donationController.getDonacionById);
+router.post('/', authenticateJWT, donationController.createDonacion);
+router.put('/:id', authenticateJWT, donationController.updateDonacion);
+router.delete('/:id', authenticateJWT, donationController.deleteDonacion);
 router.post('/create',  donationController.createDonacion);
-router.put('/:id', authenticateJWT, donationController.updateDonacion); // Actualizar un post por ID
-router.delete('/:id', authenticateJWT, donationController.deleteDonacion); // Eliminar un post por ID
+router.get('/email/:email', authenticateJWT, donationController.getDonacionesByEmail);
+
 
 module.exports = router;

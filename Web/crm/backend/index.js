@@ -6,7 +6,6 @@ const helmet = require('helmet');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
 const donationRoutes = require('./routes/donationRoutes');
-
 require('dotenv').config();
 
 const app = express();
