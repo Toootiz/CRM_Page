@@ -9,7 +9,7 @@ const FundraisingProgressWheel = () => {
   const [error, setError] = useState(null);
   const dataProvider = useDataProvider();
   
-  const objetivo = 100000; // Ajusta el objetivo deseado
+  const objetivo = 1000; // Ajusta el objetivo deseado
 
   // Llamar al Data Provider para obtener las donaciones
   useEffect(() => {
@@ -35,8 +35,11 @@ const FundraisingProgressWheel = () => {
     fetchDonations();
   }, [dataProvider]);
 
-  // Calcular el porcentaje del progreso
-  const porcentajeProgreso = Math.min((totalRecaudado / objetivo) * 100, 100); // Asegura que no exceda el 100%
+  // Calcular cuántas veces se ha completado el objetivo
+  const vecesCompletado = Math.floor(totalRecaudado / objetivo);
+
+  // Calcular el porcentaje del progreso con reinicio automático al alcanzar el objetivo
+  const porcentajeProgreso = ((totalRecaudado % objetivo) / objetivo) * 100;
 
   // Datos para la gráfica
   const chartData = [
@@ -78,7 +81,7 @@ const FundraisingProgressWheel = () => {
             cornerRadius={50} // Redondear los bordes de la barra
           />
           <Label
-            value={`$${totalRecaudado.toLocaleString()}`} // Formatear el total con separadores de miles
+            value={`$${(totalRecaudado % objetivo).toLocaleString()}`} // Mostrar el total recaudado en el ciclo actual
             position="center"
             style={{ fontSize: '20px', fontWeight: 'bold' }} // Estilo del texto
           />
@@ -86,11 +89,16 @@ const FundraisingProgressWheel = () => {
       </ResponsiveContainer>
       <div style={{ marginTop: "20px" }}>
         <Typography variant="subtitle1" style={{ color: "#8884d8" }}>
-          Progreso: ${totalRecaudado.toLocaleString()}
+          Progreso en este ciclo: ${totalRecaudado.toLocaleString()}
         </Typography>
         <Typography variant="subtitle1" style={{ color: "#d0d0d0" }}>
-          Faltante: ${Math.max(0, objetivo - totalRecaudado).toLocaleString()}
+          Faltante: ${Math.max(0, objetivo - (totalRecaudado % objetivo)).toLocaleString()}
         </Typography>
+        {vecesCompletado > 0 && (
+          <Typography variant="subtitle1" style={{ marginTop: "10px" }}>
+            Objetivo completado {vecesCompletado} {vecesCompletado === 1 ? "vez" : "veces"}
+          </Typography>
+        )}
       </div>
     </div>
   );
