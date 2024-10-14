@@ -69,13 +69,17 @@ const DonationsPage = () => {
                         value={name}
                         onChange={(e) => setname(e.target.value)}
                         fullWidth
-                        InputProps={{ style: { color: 'white' } }}
+                        InputProps={{
+                            disableUnderline: true,
+                            style: { color: 'white' }, 
+                        }}
                         InputLabelProps={{
-                            style: { color: 'rgba(255, 255, 255, 0.75)', paddingLeft: '25px' },
+                            style: { color: 'rgba(255, 255, 255, 0.75)', paddingLeft: '25px', paddingTop: '10px' },
                             sx: {
-                                '&.MuiInputLabel-shrink': { transform: 'translate(0, -20px) scale(0.80)' }
+                                '&.MuiInputLabel-shrink': { transform: 'translate(0, -10px) scale(0.80)' }
                             },
                         }}
+                        variant="standard"
                     />
                 </div>
 
@@ -85,13 +89,17 @@ const DonationsPage = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         fullWidth
-                        InputProps={{ style: { color: 'white' } }}
+                        InputProps={{
+                            disableUnderline: true,
+                            style: { color: 'white' }, 
+                        }}
                         InputLabelProps={{
-                            style: { color: 'rgba(255, 255, 255, 0.75)', paddingLeft: '25px' },
+                            style: { color: 'rgba(255, 255, 255, 0.75)', paddingLeft: '25px', paddingTop: '10px' },
                             sx: {
-                                '&.MuiInputLabel-shrink': { transform: 'translate(0, -20px) scale(0.80)' }
+                                '&.MuiInputLabel-shrink': { transform: 'translate(0, -10px) scale(0.80)' }
                             },
                         }}
+                        variant="standard"
                     />
                 </div>
 
@@ -101,13 +109,17 @@ const DonationsPage = () => {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         fullWidth
-                        InputProps={{ style: { color: 'white' } }}
+                        InputProps={{
+                            disableUnderline: true,
+                            style: { color: 'white' }, 
+                        }}
                         InputLabelProps={{
-                            style: { color: 'rgba(255, 255, 255, 0.75)', paddingLeft: '25px' },
+                            style: { color: 'rgba(255, 255, 255, 0.75)', paddingLeft: '25px', paddingTop: '10px' },
                             sx: {
-                                '&.MuiInputLabel-shrink': { transform: 'translate(0, -20px) scale(0.80)' }
+                                '&.MuiInputLabel-shrink': { transform: 'translate(0, -10px) scale(0.80)' }
                             },
                         }}
+                        variant="standard"
                     />
                 </div>
                 
@@ -117,41 +129,55 @@ const DonationsPage = () => {
                         value={donationAmount}
                         onChange={(e) => setDonationAmount(e.target.value)}
                         fullWidth
-                        InputProps={{ style: { color: 'white' } }}
+                        InputProps={{
+                            disableUnderline: true,
+                            style: { color: 'white' }, 
+                        }}
                         InputLabelProps={{
-                            style: { color: 'rgba(255, 255, 255, 0.75)', paddingLeft: '25px' },
+                            style: { color: 'rgba(255, 255, 255, 0.75)', paddingLeft: '25px', paddingTop: '10px' },
                             sx: {
-                                '&.MuiInputLabel-shrink': { transform: 'translate(0, -20px) scale(0.80)' }
+                                '&.MuiInputLabel-shrink': { transform: 'translate(0, -10px) scale(0.80)' }
                             },
                         }}
+                        variant="standard"
                     />
                 </div>
 
                 <div className="inputBx" id="Type-field">
-                    <FormControl fullWidth>
-                        <InputLabel
-                            style={{ color: 'rgba(255, 255, 255, 0.75)', paddingLeft: '25px' }}
-                            sx={{
-                                '&.Mui-focused': {
-                                    color: 'rgba(255, 255, 255, 1)', // Cambia el color al hacer focus
-                                },
-                                '&.MuiInputLabel-shrink': {
-                                    transform: 'translate(0, -20px) scale(0.80)', // Animación al subir la etiqueta
-                                },
-                            }}
-                        >
-                            Tipo de donación
-                        </InputLabel>
-                        <Select
-                            value={donationType}
-                            onChange={(e) => setDonationType(e.target.value)}
-                            style={{ color: 'white', height: '51.6px' }}
-                        >
-                            <MenuItem value="Tarjeta">Tarjeta</MenuItem>
-                            <MenuItem value="Efectivo">Efectivo</MenuItem>
-                            <MenuItem value="Especie">Especie</MenuItem>
-                        </Select>
-                    </FormControl>
+                <FormControl fullWidth variant="standard" sx={{ margin: -1 }}>
+                <InputLabel
+                    style={{ color: 'rgba(255, 255, 255, 0.75)', paddingLeft: '30px', paddingTop: '0px', textAlign: 'right' }} // Aquí ajustamos el padding y el textAlign
+                    sx={{
+                        '&.Mui-focused': {
+                            color: 'rgba(255, 255, 255, 1)', // Cambia el color al hacer focus
+                        },
+                        '&.MuiInputLabel-shrink': {
+                            transform: 'translate(0, -10px) scale(0.80)', // Animación al subir la etiqueta
+                        },
+                    }}
+                >
+                    Tipo de donación
+                </InputLabel>
+                <Select
+                    value={donationType}
+                    onChange={(e) => setDonationType(e.target.value)}
+                    style={{ color: 'white', background: 'transparent', paddingLeft: '30px', margin:'8px' }}
+                    disableUnderline
+                    MenuProps={{
+                        PaperProps: {
+                            sx: {
+                                backgroundColor: '#000', // Fondo del menú desplegable
+                                color: '#fff', // Color de texto de las opciones
+                            }
+                        }
+                    }}
+                >
+                    <MenuItem value="Tarjeta">Tarjeta</MenuItem>
+                    <MenuItem value="Efectivo">Efectivo</MenuItem>
+                    <MenuItem value="Especie">Especie</MenuItem>
+                </Select>
+            </FormControl>
+
                 </div>
 
                 <div className="inputBx">

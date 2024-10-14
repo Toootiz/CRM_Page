@@ -104,14 +104,15 @@ const LecDashboard: React.FC<ListProps> = (props) => {
                             position: 'absolute',
                             top: '10px',
                             left: '10px',
-                            color: 'white',
+                            color: 'white'
                         }}
                         onClick={handleBackToDashboard}
                     >
                         <ArrowBackIcon />
                     </IconButton>
 
-                    <h2>Formulario de Donación</h2>
+                    <h2></h2>
+                    <Typography variant="h4">¡Gracias por tu donación!</Typography>
 
                     {/* Mostrar el nombre del usuario */}
                     <div className="inputBx" id="Name-field">
