@@ -1,5 +1,5 @@
 import './Css/Main.css';
-import { Admin, Resource, CustomRoutes } from "react-admin";
+import { Admin, Resource, CustomRoutes, radiantLightTheme, radiantDarkTheme } from "react-admin";
 import { Layout } from "./Layout";
 import { Route } from "react-router-dom";
 import dataProvider from "./Componentes/dataProvider";
@@ -10,6 +10,7 @@ import { i18nProvider } from "./Componentes/i18nProvider";
 import LoginPage from "./Login/LoginPage";
 import HomePage from "./Páginas/PaginaInicial"; 
 import DonaPage from "./Páginas/PaginaDonaciones"; 
+import RegisterPage from "./Páginas/RegistroUsuario"
 import UserIcon from "@mui/icons-material/Group";
 import PostIcon from "@mui/icons-material/Book";
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -22,9 +23,13 @@ export const App = () => {
   const auth = authString ? JSON.parse(authString) : null;
   const userRole = auth ? auth.role : null;  // 'Administrador' o 'Lector'
   const userEmail = auth ? auth.email : null;  // El correo del usuario
+  const userPhone = auth ? auth.phone : null;  // El teléfono del usuario
+  const userName = auth ? auth.name : null;
   
   // Imprimir el correo del usuario en la consola
   console.log('Correo del usuario:', userEmail);
+  console.log('Teléfono del usuario:', userPhone);
+  console.log('Nombre del usuario:', userName);
   
   return (
     <>
@@ -41,6 +46,8 @@ export const App = () => {
         authProvider={authProvider}
         i18nProvider={i18nProvider}
         loginPage={LoginPage}
+        theme={radiantLightTheme}
+        darkTheme={radiantDarkTheme}
       >
         {/* Rutas condicionales según el rol del usuario */}
         <CustomRoutes>

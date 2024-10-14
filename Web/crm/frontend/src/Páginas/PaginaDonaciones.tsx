@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TextField, Button, Select, MenuItem, InputLabel, FormControl, IconButton } from '@mui/material';
+import { TextField, Button, Select, MenuItem, InputLabel, FormControl, IconButton, responsiveFontSizes } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
@@ -62,7 +62,7 @@ const DonationsPage = () => {
             </IconButton>
                 
             <div className="Donation_box">
-                <h2>Donación</h2>
+                <h2 style={{ fontSize: '80px' }}>Donación</h2>
                 <div className="inputBx" id="Name-field">
                     <TextField
                         label="Nombre"
@@ -129,7 +129,17 @@ const DonationsPage = () => {
 
                 <div className="inputBx" id="Type-field">
                     <FormControl fullWidth>
-                        <InputLabel style={{ color: 'rgba(255, 255, 255, 0.75)' }}>
+                        <InputLabel
+                            style={{ color: 'rgba(255, 255, 255, 0.75)', paddingLeft: '25px' }}
+                            sx={{
+                                '&.Mui-focused': {
+                                    color: 'rgba(255, 255, 255, 1)', // Cambia el color al hacer focus
+                                },
+                                '&.MuiInputLabel-shrink': {
+                                    transform: 'translate(0, -20px) scale(0.80)', // Animación al subir la etiqueta
+                                },
+                            }}
+                        >
                             Tipo de donación
                         </InputLabel>
                         <Select

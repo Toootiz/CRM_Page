@@ -28,11 +28,15 @@ exports.login = async (req, res) => {
         if (user && isMatch) {
             console.log('Role del usuario:', user.role);
             console.log('Email del usuario:', user.email);
+            console.log('Telefono de usuario: ', user.phone);
+            console.log('Nombre de usuario: ', user.name); 
             const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
             res.json({
                 token,
                 role: user.role,
-                email: user.email // Incluyendo el email en la respuesta
+                name: user.name,
+                email: user.email, // Incluyendo el email en la respuesta
+                phone: user.phone
             });
         } else {
             res.status(401).json({ error: 'Nombre de Usuario o contraseña inválidas' });

@@ -22,7 +22,11 @@ const LoginPage = () => {
                 if (auth) {
                     const userRole = auth.role; // Obtener el rol del usuario
                     const userEmail = auth.email; // Obtener el email del usuario
+                    const userPhone = auth.phone; // Obtener el email del usuario
+                    const userName = auth.name;
                     localStorage.setItem('userEmail', userEmail); // Guardar el email en localStorage
+                    localStorage.setItem('userPhone', userPhone); // Guardar el email en localStorage
+                    localStorage.setItem('userName', userName);
                     setIsLoggedIn(true); // Actualizar el estado de inicio de sesión
                     if (userRole === 'Lector') {
                         navigate('/lec-dashboard'); // Redirigir a la página de lector si el rol es 'Lector'
@@ -54,7 +58,7 @@ const LoginPage = () => {
 
     // Si el usuario ha iniciado sesión, no mostrar los elementos de la página de login
     if (isLoggedIn) {
-        return <div className="login-cleanup">Iniciando sesión...</div>; // Limpiar la pantalla o mostrar mensaje temporal
+        return <div className="login-cleanup" >Iniciando sesión...</div>; // Limpiar la pantalla o mostrar mensaje temporal
     }
 
     return (
@@ -104,7 +108,7 @@ const LoginPage = () => {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)} 
-                            
+                            onKeyPress={handleKeyPress}
                             fullWidth
                             InputProps={{
                                 disableUnderline: true,
