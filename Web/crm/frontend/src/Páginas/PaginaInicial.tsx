@@ -12,6 +12,7 @@ const PaginaInicial = () => {
             <nav id="main-nav">
                 <a href="/donaciones">Donaciones</a>
                 <a href="/login">Iniciar Sesión</a>
+                <a href='/registro'>Registro</a>
             </nav>
 
             {/* Sección de Visión */}
