@@ -25,11 +25,7 @@ exports.login = async (req, res) => {
         if (!isMatch) {
             return res.status(401).json({ error: 'Contraseña incorrecta' });
         }
-        if (user && isMatch) {
-            console.log('Role del usuario:', user.role);
-            console.log('Email del usuario:', user.email);
-            console.log('Telefono de usuario: ', user.phone);
-            console.log('Nombre de usuario: ', user.name); 
+        if (user && isMatch) { 
             const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
             res.json({
                 token,

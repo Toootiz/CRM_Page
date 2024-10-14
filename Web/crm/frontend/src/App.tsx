@@ -26,10 +26,6 @@ export const App = () => {
   const userPhone = auth ? auth.phone : null;  // El teléfono del usuario
   const userName = auth ? auth.name : null;
   
-  // Imprimir el correo del usuario en la consola
-  console.log('Correo del usuario:', userEmail);
-  console.log('Teléfono del usuario:', userPhone);
-  console.log('Nombre del usuario:', userName);
   
   return (
     <>
