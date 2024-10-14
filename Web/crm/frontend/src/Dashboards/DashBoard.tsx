@@ -1,7 +1,7 @@
 import DonationPieChart from '../Gráficas/pie_chart';
 import MyBarChart from '../Gráficas/Barras';
 import DateChart from '../Gráficas/Date_chart';
-import TopDonorsList from '../Gráficas/Top_donadores';
+import FundraisingProgressWheel from '../Gráficas/Top_donadores';
 import {Card, CardContent, Typography, Grid} from '@mui/material'
 import { motion } from 'framer-motion'
 
@@ -53,8 +53,8 @@ const MyDashboard = () => (
             transition={{duration: 0.5, delay: 0.2}}>
                 <Card sx={{borderRadius:'16px',  minHeight: '472px'}} >
                     <CardContent  >
-                        <Typography  variant='h6'>Mayores donadores</Typography>
-                        <TopDonorsList />
+                        <Typography  variant='h6'>Progreso de recaudación</Typography>
+                        <FundraisingProgressWheel />
                     </CardContent>
                 </Card>
             </motion.div>
