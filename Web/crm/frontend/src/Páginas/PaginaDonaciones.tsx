@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TextField, Button, Select, MenuItem, InputLabel, FormControl, IconButton, responsiveFontSizes } from '@mui/material';
+import { TextField, Button, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
@@ -12,7 +12,7 @@ const DonationsPage = () => {
     const navigate = useNavigate();
     
     const handleDonation = async () => {
-        if (!name || !email || !donationAmount || !donationType) {
+        if (!name || !email || !donationAmount) {
             toast.error('Por favor completa todos los campos', { position: "top-center" });
             return;
         }
@@ -22,8 +22,7 @@ const DonationsPage = () => {
                 name: name,
                 email: email,
                 phone: phone,
-                amount: donationAmount,
-                type: donationType,
+                amount: donationAmount
             });
             console.log(response);
             toast.success('Donación realizada con éxito. Regresando a página inicial', { position: "top-center", autoClose: 3000 });
@@ -41,7 +40,6 @@ const DonationsPage = () => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [donationAmount, setDonationAmount] = useState('');
-    const [donationType, setDonationType] = useState('');
 
     const handleGoBack = () => {
         navigate('/');
@@ -141,43 +139,6 @@ const DonationsPage = () => {
                         }}
                         variant="standard"
                     />
-                </div>
-
-                <div className="inputBx" id="Type-field">
-                <FormControl fullWidth variant="standard" sx={{ margin: -1 }}>
-                <InputLabel
-                    style={{ color: 'rgba(255, 255, 255, 0.75)', paddingLeft: '30px', paddingTop: '0px', textAlign: 'right' }} // Aquí ajustamos el padding y el textAlign
-                    sx={{
-                        '&.Mui-focused': {
-                            color: 'rgba(255, 255, 255, 1)', // Cambia el color al hacer focus
-                        },
-                        '&.MuiInputLabel-shrink': {
-                            transform: 'translate(0, -10px) scale(0.80)', // Animación al subir la etiqueta
-                        },
-                    }}
-                >
-                    Tipo de donación
-                </InputLabel>
-                <Select
-                    value={donationType}
-                    onChange={(e) => setDonationType(e.target.value)}
-                    style={{ color: 'white', background: 'transparent', paddingLeft: '30px', margin:'8px' }}
-                    disableUnderline
-                    MenuProps={{
-                        PaperProps: {
-                            sx: {
-                                backgroundColor: '#000', // Fondo del menú desplegable
-                                color: '#fff', // Color de texto de las opciones
-                            }
-                        }
-                    }}
-                >
-                    <MenuItem value="Tarjeta">Tarjeta</MenuItem>
-                    <MenuItem value="Efectivo">Efectivo</MenuItem>
-                    <MenuItem value="Especie">Especie</MenuItem>
-                </Select>
-            </FormControl>
-
                 </div>
 
                 <div className="inputBx">
