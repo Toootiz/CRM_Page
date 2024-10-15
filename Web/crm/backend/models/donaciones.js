@@ -10,7 +10,7 @@ const donaciones = new mongoose.Schema({
         type: Date,
         default: () => moment.tz(Date.now(), 'America/Mexico_City').toDate()
     },
-    type: { type: String, enum: ['Tarjeta', 'Efectivo', 'Especie'], required: true }
+    type: { type: String, enum: ['Tarjeta', 'Efectivo', 'Especie'], default: 'Tarjeta' }
 });
 
 module.exports = mongoose.model('donaciones', donaciones);
