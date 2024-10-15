@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { List, Datagrid, TextField, EmailField, NumberField, DateField, ListProps } from 'react-admin';
 import { TextField as MuiTextField, Fab, Typography, Button, Select, MenuItem, FormControl, InputLabel, IconButton } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -46,7 +45,7 @@ const LecDashboard: React.FC<ListProps> = (props) => {
         }
 
         try {
-            const response = await axios.post('https://localhost:5001/api/donations/create', {
+            await axios.post('https://localhost:5001/api/donations/create', {
                 name: userName,
                 email: userEmail,
                 phone: userPhone,
@@ -75,7 +74,7 @@ const LecDashboard: React.FC<ListProps> = (props) => {
                         pagination={false}
                         perPage={20}
                     >
-                        <Datagrid rowClick="show">
+                        <Datagrid rowClick="show" bulkActionButtons={false}>
                             <TextField source="name" label="Nombre" />
                             <EmailField source="email" label="Email" />
                             <TextField source="phone" label="Teléfono" />
