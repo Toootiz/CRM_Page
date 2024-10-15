@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { List, Datagrid, TextField, EmailField, NumberField, DateField, ListProps } from 'react-admin';
-import { TextField as MuiTextField, Fab, Typography, Button, Select, MenuItem, FormControl, InputLabel, IconButton } from '@mui/material';
+import { TextField as MuiTextField, Fab, Typography, Button, IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -25,7 +25,6 @@ const LecDashboard: React.FC<ListProps> = (props) => {
 
     // Estado para los campos del formulario de donación
     const [donationAmount, setDonationAmount] = useState('');
-    const [donationType, setDonationType] = useState('');
 
     // Función para manejar la visualización del formulario de donación
     const handleShowDonationForm = () => {
@@ -39,7 +38,7 @@ const LecDashboard: React.FC<ListProps> = (props) => {
 
     // Manejar la donación
     const handleDonation = async () => {
-        if (!userName || !userEmail || !donationAmount || !donationType) {
+        if (!userName || !userEmail || !donationAmount) {
             toast.error('Por favor completa todos los campos', { position: "top-center" });
             return;
         }
@@ -49,8 +48,7 @@ const LecDashboard: React.FC<ListProps> = (props) => {
                 name: userName,
                 email: userEmail,
                 phone: userPhone,
-                amount: donationAmount,
-                type: donationType,
+                amount: donationAmount
             });
             toast.success('Donación realizada con éxito.', { position: "top-center", autoClose: 3000 });
             setTimeout(() => {
@@ -136,21 +134,6 @@ const LecDashboard: React.FC<ListProps> = (props) => {
                             onChange={(e) => setDonationAmount(e.target.value)}
                             fullWidth
                         />
-                    </div>
-
-                    {/* Input para el tipo de donación */}
-                    <div className="inputBx" id="Type-field">
-                        <FormControl fullWidth>
-                            <InputLabel>Tipo de donación</InputLabel>
-                            <Select
-                                value={donationType}
-                                onChange={(e) => setDonationType(e.target.value)}
-                            >
-                                <MenuItem value="Tarjeta">Tarjeta</MenuItem>
-                                <MenuItem value="Efectivo">Efectivo</MenuItem>
-                                <MenuItem value="Especie">Especie</MenuItem>
-                            </Select>
-                        </FormControl>
                     </div>
 
                     <div className="inputBx">
