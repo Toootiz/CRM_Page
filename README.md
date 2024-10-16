@@ -16,7 +16,7 @@ El sistema cuenta con todas las funcionalidades CRUD (Crear, Leer, Actualizar, E
 > [!NOTE]
 > Para una intalacion mas detallada ve a esta parte --> [Instalacion completa](Web/crm/)
 
-### Intalación rapida
+### Instalación rapida
 1. Clona el repositorio:
 
     ```git
@@ -36,7 +36,7 @@ El sistema cuenta con todas las funcionalidades CRUD (Crear, Leer, Actualizar, E
    ./crear_env.sh
    ```
 
-4. Crear los certificados de la pagina
+4. Crear los certificados de la página
 
    ```gitbash
     chmod +x crear_certs.sh
@@ -50,7 +50,7 @@ El sistema cuenta con todas las funcionalidades CRUD (Crear, Leer, Actualizar, E
    ```gitbash
    npm install
    ```
-6. Correr la pagina
+6. Correr la página
    ```gitbash
    npm start
    ```
