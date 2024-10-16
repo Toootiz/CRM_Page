@@ -70,7 +70,7 @@ Para poder crear los certificados se puede hacer:
 > [!Important]
 > Tienes que llenar la información que te piden los certificados
 
-### Opcion maual
+### Opcion manual
 - Ingresa a la carpeta certs desde terminal ubicada en `CRM_Page\web\crm\certs`
   
   ```pws
