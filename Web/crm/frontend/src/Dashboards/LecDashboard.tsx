@@ -5,38 +5,35 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '../Css/lecCss.css';  // Asegúrate de tener un archivo CSS para los estilos personalizados
+import '../Css/lecCss.css';  
 
 const LecDashboard: React.FC<ListProps> = (props) => {
     
-    // Estado para controlar si se muestra el formulario de donación o el dashboard
     const [showDonationForm, setShowDonationForm] = useState(false);
 
     const authString = localStorage.getItem('auth');
     const auth = authString ? JSON.parse(authString) : null;
-    const userEmail = auth ? auth.email : null;  // El correo del usuario
-    const userPhone = auth ? auth.phone : null;  // El teléfono del usuario
+    const userEmail = auth ? auth.email : null; 
+    const userPhone = auth ? auth.phone : null;  
     const userName = auth ? auth.name : null;
 
-    // Imprimir los datos del usuario en la consola
+
     console.log('Correo del usuario:', userEmail);
     console.log('Teléfono del usuario:', userPhone);
     console.log('Nombre del usuario:', userName);
 
-    // Estado para los campos del formulario de donación
     const [donationAmount, setDonationAmount] = useState('');
 
-    // Función para manejar la visualización del formulario de donación
     const handleShowDonationForm = () => {
         setShowDonationForm(true);
     };
 
-    // Volver al dashboard
+
     const handleBackToDashboard = () => {
         setShowDonationForm(false);
     };
 
-    // Manejar la donación
+
     const handleDonation = async () => {
         if (!userName || !userEmail || !donationAmount) {
             toast.error('Por favor completa todos los campos', { position: "top-center" });
@@ -52,7 +49,7 @@ const LecDashboard: React.FC<ListProps> = (props) => {
             });
             toast.success('Donación realizada con éxito.', { position: "top-center", autoClose: 3000 });
             setTimeout(() => {
-                handleBackToDashboard(); // Volver al dashboard
+                handleBackToDashboard();
             }, 1000);
         } catch (error) {
             console.error('Error en la donación', error);
@@ -63,7 +60,6 @@ const LecDashboard: React.FC<ListProps> = (props) => {
     return (
         <div>
             {!showDonationForm ? (
-                // Mostrar el Dashboard si no se está mostrando el formulario de donación
                 <>
                     <List
                         {...props}
@@ -82,7 +78,6 @@ const LecDashboard: React.FC<ListProps> = (props) => {
                         </Datagrid>
                     </List>
 
-                    {/* Botón para abrir el formulario de donación */}
                     <Fab
                         color="primary"
                         aria-label="donar"
@@ -94,7 +89,6 @@ const LecDashboard: React.FC<ListProps> = (props) => {
                     </Fab>
                 </>
             ) : (
-                // Mostrar el formulario de donación si está activo
                 <div className="Donation_box">
                     <IconButton
                         style={{
@@ -111,28 +105,43 @@ const LecDashboard: React.FC<ListProps> = (props) => {
                     <h2></h2>
                     <Typography variant="h4">¡Gracias por tu donación!</Typography>
 
-                    {/* Mostrar el nombre del usuario */}
+    
                     <div className="inputBx" id="Name-field">
                         <Typography variant="h6">Nombre: {userName}</Typography>
                     </div>
 
-                    {/* Mostrar el correo del usuario */}
                     <div className="inputBx" id="Email-field">
                         <Typography variant="h6">Email: {userEmail}</Typography>
                     </div>
 
-                    {/* Mostrar el teléfono del usuario */}
                     <div className="inputBx" id="Phone-field">
                         <Typography variant="h6">Teléfono: {userPhone}</Typography>
                     </div>
 
-                    {/* Input para la cantidad a donar */}
                     <div className="inputBx" id="Amount-field">
                         <MuiTextField
                             label="Cantidad a donar"
                             value={donationAmount}
                             onChange={(e) => setDonationAmount(e.target.value)}
                             fullWidth
+                            InputProps={{
+                                disableUnderline: true,
+                                style: { color: 'white' },
+                            }}
+                            InputLabelProps={{
+                                style: {
+                                    color: 'rgba(255, 255, 255, 0.75)',
+                                    width: '100%',
+                                    paddingLeft: '30px',
+                                    paddingTop: '22px',
+                                },
+                                sx: {
+                                    '&.MuiInputLabel-shrink': {
+                                        transform: 'translate(0, -15px) scale(0.80)',
+                                    },
+                                },
+                            }}
+                            variant="standard"
                         />
                     </div>
 

@@ -60,7 +60,7 @@ const DonationsPage = () => {
             </IconButton>
                 
             <div className="Donation_box">
-                <h2 style={{ fontSize: '80px' }}>Donación</h2>
+                <h2 style={{ fontSize: '80px'}}>Donación</h2>
                 <div className="inputBx" id="Name-field">
                     <TextField
                         label="Nombre"
@@ -150,6 +150,8 @@ const DonationsPage = () => {
                             background: 'linear-gradient(45deg, #ff357a, #fff172)',
                             color: '#fff',
                             borderRadius: '40px',
+                            padding: '10px',
+                            marginTop: '15px'
                         }}
                     >
                         Donar

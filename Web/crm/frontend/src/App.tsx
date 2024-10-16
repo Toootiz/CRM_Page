@@ -2,7 +2,7 @@ import './Css/Main.css';
 import { Admin, Resource, CustomRoutes } from "react-admin";
 import { Layout } from "./Layout";
 import { Route } from "react-router-dom";
-import { ThemeProvider } from '@mui/material/styles'; // Proveedor de temas de Material-UI
+import { ThemeProvider } from '@mui/material/styles';
 import theme from './Temas/theme';
 import darkTheme from './Temas/darkTheme';
 import dataProvider from "./Componentes/dataProvider";
@@ -20,22 +20,19 @@ import MyDashboard from "./Dashboards/DashBoard";
 import LecDashboard from "./Dashboards/LecDashboard";
 
 export const App = () => {
-  // Obtener el rol del usuario desde localStorage
   const authString = localStorage.getItem('auth');
   const auth = authString ? JSON.parse(authString) : null;
-  const userRole = auth ? auth.role : null;  // 'Administrador' o 'Lector'
+  const userRole = auth ? auth.role : null;
   
   
   return (
     <>
     <ThemeProvider theme={theme}>
-        {/* Define rutas customizadas antes de la autenticación */}
         <CustomRoutes noLayout>
           <Route path="/inicio" element={<HomePage />} /> 
           <Route path="/donaciones" element={<DonaPage />} />
         </CustomRoutes>
 
-        {/* Rutas protegidas, requieren autenticación */}
         <Admin
           layout={Layout}
           dataProvider={dataProvider}
@@ -45,7 +42,6 @@ export const App = () => {
           theme={theme}
           darkTheme={darkTheme}
         >
-          {/* Rutas condicionales según el rol del usuario */}
           <CustomRoutes>
             {userRole === 'Administrador' && (
               <Route path="/admin-dashboard" element={<MyDashboard />} />
@@ -55,7 +51,6 @@ export const App = () => {
             )}
           </CustomRoutes>
 
-          {/* Recursos para administradores */}
           {userRole === 'Administrador' && (
             <>
               <Resource
@@ -86,18 +81,13 @@ export const App = () => {
           {userRole === 'Lector' && (
             <>
               <Resource
-                name="misdonaciones"  // Recurso filtrado para los lectores
+                name="misdonaciones"  
                 options={{ label: 'Mis Donaciones' }}
-                list={LecDashboard}   // Componente que muestra la lista de donaciones filtradas
+                list={LecDashboard}  
                 icon={PostIcon}
               />
             </>
           )}
-
-
-
-
-
         </Admin>
     </ThemeProvider>
     </>

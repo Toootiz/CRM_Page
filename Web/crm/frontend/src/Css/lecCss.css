@@ -6,6 +6,10 @@
   font-family: "Quicksand", sans-serif;
 }
 
+.Toastify__toast-container--top-center {
+  top: 50px;
+}
+
 .fab {
   position: fixed;
   bottom: -10px;
