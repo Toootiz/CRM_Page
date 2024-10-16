@@ -15,7 +15,7 @@
 
 Para cargar la base de datos en su instancia local deberán correr la siguiente linea en la terminal **"mongorestore --db SandersDB"** ruta del archivo de la base de datos volcada en el repo"
 
-> **La linea de codigo debe ser algo similar:**
+> **La línea de codigo debe ser algo similar:**
   ```bash
     mongorestore --db SandersDB "C:\Users\usuario\carpeta_donde_guardaste el repo\CRM_Page\web\crm\"
   ```
@@ -27,9 +27,9 @@ Para cargar la base de datos en su instancia local deberán correr la siguiente 
 Esto se tiene que hacer nada más en la carpeta de backend ya que la de frontend ya tiene uno default. 
 
 > [!TIP]
-> Un archivo `.env` se utiliza para almacenar variables de entorno en un proyecto. Estas variables contienen información de configuración que puede ser sensible o específica del entorno en el que se ejecuta la aplicación, como credenciales de bases de datos, claves API, direcciones de servidores, y otros parámetros de configuración.
+> Un archivo `.env` se utiliza para almacenar variables de entorno en un proyecto. Estas variables contienen información de configuración que puede ser sensible o específica del entorno en el que se ejecuta la aplicación, como credenciales de bases de datos, claves API, direcciones de servidores y otros parámetros de configuración.
 
-### Opcion maual
+### Opción manual
 - Ingresa a la carpeta backend ubicada en `CRM_Page\web\crm\backend`
 - Crear un archivo llamado `.env`
 - Agregar esto dentro del archivo:
@@ -41,9 +41,9 @@ Esto se tiene que hacer nada más en la carpeta de backend ya que la de frontend
   CORREO="ejemplo@text.com" #Tu correo
   PASS="1234 1234 1234 1234" #Tu contraseña de aplicación
   ```
-### Opcion con terminal
+### Opción con terminal
 - Usando `gitbash`
-- Aceder a la ruta del repositorio
+- Acceder a la ruta del repositorio
 
   ```gitbash
     cd "C:\Users\usuario\carpeta_donde_guardaste el repo\CRM_Page\web\crm\backend"
@@ -58,12 +58,12 @@ Esto se tiene que hacer nada más en la carpeta de backend ya que la de frontend
   ```gitbash
      ./crear_env.sh
   ```
-> Esto creara el archivo y añadira los datos solo falta cambiar la seccion de CORREO="ejemplo@text.com" con tu correo y PASS="1234 1234 1234 1234" con tu contraseña de aplicación
+> Esto creara el archivo y añadirá los datos, solo falta cambiar la seccion de CORREO="ejemplo@text.com" con tu correo y PASS="1234 1234 1234 1234" con tu contraseña de aplicación
 
 --- 
 ## Añadir los certificados para https
 
-4. Crear los certificados de la pagina
+4. Crear los certificados de la página
 
 Para poder crear los certificados se puede hacer: 
 
@@ -76,7 +76,7 @@ Para poder crear los certificados se puede hacer:
   ```pws
     cd "C:\Users\usuario\carpeta_donde_guardaste_el_repo\CRM_Page\web\crm\certs"
   ```
-- Correr las siguientes lienas en terminal para poder crear todos los certificados
+- Correr las siguientes líneas en terminal para poder crear todos los certificados
   **Generar una llave privada para la Autoridad Certificadora (CA):**
   
   ```
@@ -102,68 +102,48 @@ Para poder crear los certificados se puede hacer:
   ```
     	openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 365 -sha256
   ```
-### Opcion con terminal
+### Opción con terminal
 
 - Ingresa a la carpeta certs desde gitbash ubicada en `CRM_Page\web\crm\certs`
-- Correr la sigueinte linea para crear archivos
+- Correr la siguiente línea para crear archivos
   
   ```gitbash
   chmod +x crear_certs.sh
   ```
-- Correr la sigueinte linea para crear los certifiados
+- Correr la sigueinte línea para crear los certificados
   ```gitbash
   ./crear_certs.sh
   ```
 ---
 ## Instalar las dependencias de node
 > [!WARNING]
-> Se necesita tener [Node js](https://nodejs.org/en/) para poder correr la pagina.
+> Se necesita tener [Node js](https://nodejs.org/en/) para poder correr la página.
 
-5. Añadir las dependencias del sistema
+5. Añadir las dependencias del sistema.
 
-- En la capeta `crm` ubicada en `CRM_Page\web\crm` correr la siguinte linea de codigo
+- En la capeta `crm` ubicada en `CRM_Page\web\crm` correr la siguiente línea de código
   
   ```
   npm install
   ```
-- Entrar en la capeta `frontend` ubicada en `CRM_Page\web\crm\frontend` correr la siguinte linea de codigo
+- Entrar en la carpeta `frontend` ubicada en `CRM_Page\web\crm\frontend` correr la siguiente línea de código
   
   ```
   npm install
   ```
-- Entrar en la capeta `backend` ubicada en `CRM_Page\web\crm\backedn` correr la siguinte linea de codigo
+- Entrar en la capeta `backend` ubicada en `CRM_Page\web\crm\backedn` correr la siguiente línea de código
   
   ```
   npm install
   ```
 > [!TIP]
-> Una vez que ya instalaste todas las dependencias en caso de querer agregar una o actualizar las que tienes pudes usar desde la carpeta `crm`
+> Una vez que ya instalaste todas las dependencias en caso de querer agregar una o actualizar las que tienes puedes usar desde la carpeta `crm`
 > ```
 > npm run act
 > ```
 ---
-6. Ya puedes correr la pagina
+6. Ya puedes correr la página
    
      ```
     npm start
      ```
-
-
-
-<!-- Esto no será visible. 
-Antes de empezar recuerden poner dentro de ambas carpetas "npm install" para que les descargue las dependencias de las aplicaciones, después podrán correrlo sin ningún problema, para iniciar la app del backend usen el comando "node index.js" y para el front end "npm run dev"
-
-
-# Instrucciones para la base de datos
-Para cargar la base de datos en su instancia local deberán correr la siguiente linea en la terminal "mongorestore --db SandersDB "ruta del archivo de la base de datos volcada en el repo"
-
-# Instrucciones para cargar variables de entorno
-Esto lo tienen que hacer nada más en la carpeta de backend ya que la de frontend ya viene con uno default. Tienen que crear un archivo que se llame ".env" y tiene que contener lo siguiente
-
-```
-MONGO_URI=mongodb://localhost:27017/SandersDB 
-PORT=5001 
-JWT_SECRET=my_super_secret_key_tcb2007b
-```
-
--->
