@@ -14,7 +14,7 @@ El sistema cuenta con todas las funcionalidades CRUD (Crear, Leer, Actualizar, E
 ## Instalación 
 
 > [!NOTE]
-> Para una intalacion mas detallada ve a esta parte --> [Instalacion completa]()
+> Para una intalacion mas detallada ve a esta parte --> [Instalacion completa](CRM_Page/Web/crm/README.md)
 
 ### Intalación rapida
 1. Clona el repositorio:
