@@ -5,7 +5,7 @@
 1. Clona el repositorio:
 
     ```git
-    git clone git@github.com:Toootiz/E2.git
+    git clone git@github.com:Toootiz/CRM_Page.git
     ```
 ---
 ## Instrucciones para la base de datos
@@ -17,7 +17,7 @@ Para cargar la base de datos en su instancia local deberán correr la siguiente 
 
 > **La linea de codigo debe ser algo similar:**
   ```bash
-    mongorestore --db SandersDB "C:\Users\usuario\carpeta_donde_guardaste el repo\E2\web\crm\"
+    mongorestore --db SandersDB "C:\Users\usuario\carpeta_donde_guardaste el repo\CRM_Page\web\crm\"
   ```
 ---
 ## Agregar archivo ".env" para las variables de entorno 
@@ -30,7 +30,7 @@ Esto se tiene que hacer nada más en la carpeta de backend ya que la de frontend
 > Un archivo `.env` se utiliza para almacenar variables de entorno en un proyecto. Estas variables contienen información de configuración que puede ser sensible o específica del entorno en el que se ejecuta la aplicación, como credenciales de bases de datos, claves API, direcciones de servidores, y otros parámetros de configuración.
 
 ### Opcion maual
-- Ingresa a la carpeta backend ubicada en `E2\web\crm\backend`
+- Ingresa a la carpeta backend ubicada en `CRM_Page\web\crm\backend`
 - Crear un archivo llamado `.env`
 - Agregar esto dentro del archivo:
   
@@ -46,7 +46,7 @@ Esto se tiene que hacer nada más en la carpeta de backend ya que la de frontend
 - Aceder a la ruta del repositorio
 
   ```gitbash
-    cd "C:\Users\usuario\carpeta_donde_guardaste el repo\E2\web\crm\backend"
+    cd "C:\Users\usuario\carpeta_donde_guardaste el repo\CRM_Page\web\crm\backend"
   ```
 - Correr lo siguiente para poder crear archivos
   
@@ -71,10 +71,10 @@ Para poder crear los certificados se puede hacer:
 > Tienes que llenar la información que te piden los certificados
 
 ### Opcion maual
-- Ingresa a la carpeta certs desde terminal ubicada en `E2\web\crm\certs`
+- Ingresa a la carpeta certs desde terminal ubicada en `CRM_Page\web\crm\certs`
   
   ```pws
-    cd "C:\Users\usuario\carpeta_donde_guardaste_el_repo\E2\web\crm\certs"
+    cd "C:\Users\usuario\carpeta_donde_guardaste_el_repo\CRM_Page\web\crm\certs"
   ```
 - Correr las siguientes lienas en terminal para poder crear todos los certificados
   **Generar una llave privada para la Autoridad Certificadora (CA):**
@@ -104,7 +104,7 @@ Para poder crear los certificados se puede hacer:
   ```
 ### Opcion con terminal
 
-- Ingresa a la carpeta certs desde gitbash ubicada en `E2\web\crm\certs`
+- Ingresa a la carpeta certs desde gitbash ubicada en `CRM_Page\web\crm\certs`
 - Correr la sigueinte linea para crear archivos
   
   ```gitbash
@@ -121,17 +121,17 @@ Para poder crear los certificados se puede hacer:
 
 5. Añadir las dependencias del sistema
 
-- En la capeta `crm` ubicada en `E2\web\crm` correr la siguinte linea de codigo
+- En la capeta `crm` ubicada en `CRM_Page\web\crm` correr la siguinte linea de codigo
   
   ```
   npm install
   ```
-- Entrar en la capeta `frontend` ubicada en `E2\web\crm\frontend` correr la siguinte linea de codigo
+- Entrar en la capeta `frontend` ubicada en `CRM_Page\web\crm\frontend` correr la siguinte linea de codigo
   
   ```
   npm install
   ```
-- Entrar en la capeta `backend` ubicada en `E2\web\crm\backedn` correr la siguinte linea de codigo
+- Entrar en la capeta `backend` ubicada en `CRM_Page\web\crm\backedn` correr la siguinte linea de codigo
   
   ```
   npm install
