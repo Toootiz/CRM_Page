@@ -14,7 +14,7 @@ El sistema cuenta con todas las funcionalidades CRUD (Crear, Leer, Actualizar, E
 ## Instalación 
 
 > [!NOTE]
-> Para una intalacion mas detalllada ve a esta parte --> [Instalacion completa]()
+> Para una intalacion mas detallada ve a esta parte --> [Instalacion completa]()
 
 ### Intalación rapida
 1. Clona el repositorio:
@@ -22,7 +22,38 @@ El sistema cuenta con todas las funcionalidades CRUD (Crear, Leer, Actualizar, E
     ```git
     git clone git@github.com:Toootiz/CRM_Page.git
     ```
+2. Levantar base de datos: 
+    ```
+    mongorestore --db SandersDB "C:\Users\usuario\carpeta_donde_guardaste el repo\CRM_Page\web\crm\"
+    ```
+3. Cargar las variables de entorno:
 
+   ```gitbash
+    chmod +x crear_env.sh
+   ```
+
+   ```gitbash
+   ./crear_env.sh
+   ```
+
+4. Crear los certificados de la pagina
+
+   ```gitbash
+    chmod +x crear_certs.sh
+   ```
+
+   ```gitbash
+   ./crear_certs.sh
+   ```
+5. Añadir las dependencias del sistema
+   > En frontend, backend y crm correr
+   ```gitbash
+   npm intall
+   ```
+6. Correr la pagina
+   ```gitbash
+   npm start
+   ```
 ---
 ## Equipo
 
