@@ -3,7 +3,7 @@ const router = express.Router();
 const donationController = require('../controllers/donationsController');
 const authenticateJWT = require('../middleware/auth');
 
-// Otras rutas existentes
+
 router.get('/', authenticateJWT, donationController.getAllDonaciones);
 router.get('/:id', authenticateJWT, donationController.getDonacionById);
 router.post('/', authenticateJWT, donationController.createDonacion);

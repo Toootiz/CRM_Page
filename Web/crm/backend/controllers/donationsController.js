@@ -1,18 +1,17 @@
 const nodemailer = require('nodemailer');
 const Donaciones = require('../models/donaciones');
 
-// Configuración de Nodemailer
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
-    secure: true, // true para usar SSL
+    secure: true, 
     auth: {
-        user: "test.testertestorio@gmail.com",
-        pass: "jdtv axxi dpuo sebk"
+        user: process.env.CORREO,
+        pass: process.env.PASS
     }
 });
 
-// Función para enviar el correo de agradecimiento
+
 const sendThankYouEmail = async (email, name, donationAmount) => {
     const mailOptions = {
         from: '"Fundación SANDERS" <tu-correo@gmail.com>',

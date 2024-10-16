@@ -3,37 +3,37 @@ import { useLogin, useNotify } from 'react-admin';
 import { TextField, Button, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import '../Css/LoginPage.css'; // Importar los estilos personalizados
+import '../Css/LoginPage.css'; 
 
 const LoginPage = () => {
-    const [username, setUsername] = useState(''); // Estado para almacenar el nombre de usuario
-    const [password, setPassword] = useState(''); // Estado para almacenar la contraseña
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado para rastrear si el usuario ha iniciado sesión
-    const login = useLogin(); // Hook de react-admin para gestionar el login
-    const notify = useNotify(); // Hook de react-admin para mostrar notificaciones
-    const navigate = useNavigate(); // Hook para navegar entre rutas
+    const [username, setUsername] = useState(''); 
+    const [password, setPassword] = useState(''); 
+    const [isLoggedIn, setIsLoggedIn] = useState(false); 
+    const login = useLogin(); 
+    const notify = useNotify(); 
+    const navigate = useNavigate(); 
 
     const handleLogin = () => {
         login({ username, password })
             .then(() => {
                 
                 const authString = localStorage.getItem('auth');
-                const auth = authString ? JSON.parse(authString) : null; // Obtener la información de autenticación del localStorage
+                const auth = authString ? JSON.parse(authString) : null; 
                 if (auth) {
-                    const userRole = auth.role; // Obtener el rol del usuario
-                    const userEmail = auth.email; // Obtener el email del usuario
-                    const userPhone = auth.phone; // Obtener el email del usuario
+                    const userRole = auth.role; 
+                    const userEmail = auth.email; 
+                    const userPhone = auth.phone; 
                     const userName = auth.name;
-                    localStorage.setItem('userEmail', userEmail); // Guardar el email en localStorage
-                    localStorage.setItem('userPhone', userPhone); // Guardar el email en localStorage
+                    localStorage.setItem('userEmail', userEmail); 
+                    localStorage.setItem('userPhone', userPhone); 
                     localStorage.setItem('userName', userName);
-                    setIsLoggedIn(true); // Actualizar el estado de inicio de sesión
+                    setIsLoggedIn(true); 
                     if (userRole === 'Lector') {
-                        navigate('/lec-dashboard'); // Redirigir a la página de lector si el rol es 'Lector'
+                        navigate('/lec-dashboard'); 
                     } else if (userRole === 'Administrador') {
-                        navigate('/admin-dashboard'); // Redirigir a la página de administrador si el rol es 'Administrador'
+                        navigate('/admin-dashboard'); 
                     } else {
-                        navigate('/'); // Redirigir a la página principal si no se reconoce el rol
+                        navigate('/'); 
                     }
                     window.location.reload();
                 } else {
@@ -41,13 +41,13 @@ const LoginPage = () => {
                 }
             })
             .catch(() => {
-                notify('Credenciales inválidas', { type: 'warning' }); // Mostrar notificación de error si las credenciales no son válidas
+                notify('Credenciales inválidas', { type: 'warning' }); 
             });
     };
 
     const handleKeyPress = (event: { key: string; }) => {
         if (event.key === 'Enter') {
-            handleLogin(); // Llamar a handleLogin si se presiona la tecla Enter
+            handleLogin(); 
         }
     };
 
@@ -56,9 +56,9 @@ const LoginPage = () => {
         navigate('/');
     }
 
-    // Si el usuario ha iniciado sesión, no mostrar los elementos de la página de login
+
     if (isLoggedIn) {
-        return <div className="login-cleanup" >Iniciando sesión...</div>; // Limpiar la pantalla o mostrar mensaje temporal
+        return <div className="login-cleanup" >Iniciando sesión...</div>; 
     }
 
     return (
@@ -70,7 +70,7 @@ const LoginPage = () => {
                     left: '10px',
                     color: 'white',
                 }}
-                onClick={handleGoBack} // Cambiado de onAbort a onClick para manejar la navegación
+                onClick={handleGoBack} 
             >
                 <ArrowBackIcon/>
             </IconButton> 
@@ -80,19 +80,19 @@ const LoginPage = () => {
                 <i style={{ '--clr': '#daa370' }}></i>
                 <i style={{ '--clr': '#a23b62' }}></i>
                 <div className="login">
-                    <h2>Inicio de sesión</h2>
+                    <h2 style={{ fontSize: '43px'}}>Inicio de sesión</h2>
                     <div className="inputBx">
                         <TextField
                             label="Usuario"
                             value={username}
-                            onChange={(e) => setUsername(e.target.value)} // Actualizar el estado del nombre de usuario
+                            onChange={(e) => setUsername(e.target.value)} 
                             fullWidth
                             InputProps={{
                                 disableUnderline: true,
                                 style: { color: 'white' },
                             }}
                             InputLabelProps={{
-                                style: { color: 'rgba(255, 255, 255, 0.75)', width: '100%', paddingLeft: '25px', paddingTop: '14px'}, 
+                                style: { color: 'rgba(255, 255, 255, 0.75)', width: '100%', paddingLeft: '30px', paddingTop: '22px'}, 
                                 sx: {
                                     '&.MuiInputLabel-shrink': { 
                                         transform: 'translate(0, -15px) scale(0.80)' 
@@ -115,7 +115,7 @@ const LoginPage = () => {
                                 style: { color: 'white' }, 
                             }}
                             InputLabelProps={{
-                                style: { color: 'rgba(255, 255, 255, 0.75)', width: '100%', paddingLeft: '25px', paddingTop: '14px'},
+                                style: { color: 'rgba(255, 255, 255, 0.75)', width: '100%', paddingLeft: '30px', paddingTop: '22px'},
                                 sx: {
                                     '&.MuiInputLabel-shrink': { 
                                         transform: 'translate(0, -15px) scale(0.80)' 
@@ -134,6 +134,7 @@ const LoginPage = () => {
                                 background: 'linear-gradient(45deg, #ff357a, #fff172)',
                                 color: '#fff',
                                 borderRadius: '40px',
+                                marginTop: '25px'
                             }}
                         >
                             Iniciar sesión

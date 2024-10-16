@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
 import {toast, ToastContainer} from 'react-toastify'
-import '../Css/RegisterPage.css'; // Importar los estilos personalizados
+import '../Css/RegisterPage.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -25,7 +25,7 @@ const UserRegister = () => {
             toast.success('¡Usuario registrado con éxito! Regresando a la página de inicio de sesión...',{ position: "top-center" ,  autoClose: 3000});
 
             setTimeout(() => {
-                navigate('/login'); // Redirigimos a la página de inicio de sesión
+                navigate('/login');
             }, 1000);
 
         }catch(error){
@@ -34,11 +34,11 @@ const UserRegister = () => {
         }
     };
 
-    const [username, setUsername] = useState(''); // Estado para almacenar el nombre de usuario
-    const [name, setName] = useState('') //Estado para almacenar el nombre
-    const [password, setPassword] = useState(''); // Estado para almacenar la contraseña
-    const [email, setEmail] = useState(''); //Estado para almacenar el correo electrónico
-    const [phone, setPhone] = useState(''); //Estado para almacenar el teléfono
+    const [username, setUsername] = useState('');
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState(''); 
+    const [phone, setPhone] = useState('');
 
     const handleGoBack = () => {
         navigate('/');
@@ -53,18 +53,18 @@ const UserRegister = () => {
                     left: '10px',
                     color: 'white',
                 }}
-                onClick={handleGoBack} // Cambiado de onAbort a onClick para manejar la navegación
+                onClick={handleGoBack}
             >
                 <ArrowBackIcon/>
             </IconButton> 
                        
                 <div className="register">
-                    <h2>Registro de Usuario</h2>
+                    <h2 style={{ fontSize: '33px'}}>Registro de Usuario</h2>
                     <div className="inputBx">
                         <TextField
                             label="Usuario"
                             value={username}
-                            onChange={(e) => setUsername(e.target.value)} // Actualizar el estado del nombre de usuario
+                            onChange={(e) => setUsername(e.target.value)}
                             fullWidth
                             InputProps={{
                                 disableUnderline: true,
@@ -87,9 +87,9 @@ const UserRegister = () => {
                             value={name}
                             onChange={(e)=> setName(e.target.value)}
                             fullWidth
-                            inputProps={{
+                            InputProps={{
                                 disableUnderline: true,
-                                style: {color: 'white'},
+                                style: { color: 'white' },
                             }}
                             InputLabelProps={{
                                 style: { color: 'rgba(255, 255, 255, 0.75)', width: '100%', paddingLeft: '25px', paddingTop: '14px'}, 
@@ -108,9 +108,9 @@ const UserRegister = () => {
                             value={email}
                             onChange={(e)=> setEmail(e.target.value)}
                             fullWidth
-                            inputProps={{
+                            InputProps={{
                                 disableUnderline: true,
-                                style: {color: 'white'},
+                                style: { color: 'white' },
                             }}
                             InputLabelProps={{
                                 style: { color: 'rgba(255, 255, 255, 0.75)', width: '100%', paddingLeft: '25px', paddingTop: '14px'}, 
@@ -129,9 +129,9 @@ const UserRegister = () => {
                             value={phone}
                             onChange={(e)=> setPhone(e.target.value)}
                             fullWidth
-                            inputProps={{
+                            InputProps={{
                                 disableUnderline: true,
-                                style: {color: 'white'},
+                                style: { color: 'white' },
                             }}
                             InputLabelProps={{
                                 style: { color: 'rgba(255, 255, 255, 0.75)', width: '100%', paddingLeft: '25px', paddingTop: '14px'}, 
@@ -175,6 +175,8 @@ const UserRegister = () => {
                                 background: 'linear-gradient(45deg, #ff357a, #fff172)',
                                 color: '#fff',
                                 borderRadius: '40px',
+                                padding: '10px',
+                                marginTop: '15px'
                             }}
                         >
                             Registrarse

@@ -7,12 +7,12 @@
   font-family: "Quicksand", sans-serif;
 }
 
-/* Estilo general del body para que ocupe toda la pantalla */
+
 body {
   background-color: #000000;
   width: 100%;
-  height: 100vh; /* Hace que ocupe toda la altura de la pantalla */
-  overflow-x: hidden; /* Previene que haya scroll horizontal */
+  height: 100vh;
+  overflow-x: hidden; 
   padding: 0;
 }
 
@@ -42,12 +42,12 @@ body {
   color: #ff357a;
 }
 
-/* Sección de visión y misión para que ocupen todo el ancho */
+
 #vision-section,
 #mision-section {
   padding: 20px;
   margin: 20px auto;
-  width: 80%; /* Aumenta el ancho de las secciones al 80% */
+  width: 80%; 
   background-color: rgba(255, 255, 255, 0.1);
   border: 2px solid #ffffff;
   border-radius: 15px;
@@ -68,16 +68,16 @@ body {
   padding: 15px;
   background-color: #333;
   color: white;
-  position: fixed; /* El footer siempre en la parte inferior */
+  position: fixed;
   bottom: 0;
   width: 100%;
 }
 
-/* Ajustes adicionales para el contenido */
+
 .container {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Acomoda las secciones */
+  justify-content: space-between; 
 }
