@@ -20,7 +20,7 @@ El sistema cuenta con todas las funcionalidades CRUD (Crear, Leer, Actualizar, E
 1. Clona el repositorio:
 
     ```git
-    git clone git@github.com:Toootiz/E2.git
+    git clone git@github.com:Toootiz/CRM_Page.git
     ```
 
 ---
