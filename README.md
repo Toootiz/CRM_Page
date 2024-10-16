@@ -48,7 +48,7 @@ El sistema cuenta con todas las funcionalidades CRUD (Crear, Leer, Actualizar, E
 5. Añadir las dependencias del sistema
    > En frontend, backend y crm correr
    ```gitbash
-   npm intall
+   npm install
    ```
 6. Correr la pagina
    ```gitbash
