@@ -63,7 +63,33 @@ El sistema cuenta con todas las funcionalidades CRUD (Crear, Leer, Actualizar, E
 - [Gabriel Muñoz](https://github.com/Toootiz)
 
 ---
+## Tecnologías Utilizadas
 
+- **React Admin** para la interfaz de usuario.
+- **Express** para el backend del CRM.
+- **Mongoose** para la interacción con la base de datos.
+
+---
+## Contenido del Repositorio
+
+1. **[Ciberseguridad](Ciberseguridad/)**  
+   Esta carpeta contiene documentos y archivos relacionados con la ciberseguridad del proyecto, incluyendo:
+   - **Análisis de riesgos**: Evaluación de los riesgos potenciales y estrategias de mitigación.
+   - **Diagrama STRIDE**: Modelado de amenazas utilizando la metodología STRIDE.
+   - **Reporte de pruebas de seguridad**: Resultados de pruebas de seguridad realizadas al sistema.
+
+2. **[Proyecto](Proyecto/)**  
+   En esta carpeta se encuentran los archivos de planificación y documentación del proyecto, tales como:
+   - **Requerimientos**: Documentación de requisitos funcionales y no funcionales.
+   - **Especificación de Requisitos de Software (SRS)**: Detalle técnico de las funcionalidades del sistema.
+   - **Estructura de Desglose del Trabajo (WBS)**: Planificación de tareas y actividades del proyecto.
+
+3. **[Web](Web/)**  
+   Contiene el código fuente del proyecto web, que incluye:
+   - **crm**: Implementación del sistema CRM para la Fundación Sanders, con funcionalidades para gestionar donaciones y datos de usuarios.
+   - **test**: Pruebas automatizadas realizadas con Jest.
+
+---
 ## Licencia
 
 This project is open source and available under the [MIT License](LICENSE).
