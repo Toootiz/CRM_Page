@@ -22,6 +22,8 @@ Para cargar la base de datos en su instancia local deberán correr la siguiente 
 ---
 ## Agregar archivo ".env" para las variables de entorno 
 
+3. Cargar las variables de entorno.
+
 Esto se tiene que hacer nada más en la carpeta de backend ya que la de frontend ya tiene uno default. 
 
 > [!TIP]
@@ -59,7 +61,92 @@ Esto se tiene que hacer nada más en la carpeta de backend ya que la de frontend
 > Esto creara el archivo y añadira los datos solo falta cambiar la seccion de CORREO="ejemplo@text.com" con tu correo y PASS="1234 1234 1234 1234" con tu contraseña de aplicación
 
 --- 
-### Añadir los certificados para https
+## Añadir los certificados para https
+
+4. Crear los certificados de la pagina
+
+Para poder crear los certificados se puede hacer: 
+
+> [!Important]
+> Tienes que llenar la información que te piden los certificados
+
+### Opcion maual
+- Ingresa a la carpeta certs desde terminal ubicada en `E2\web\crm\certs`
+  
+  ```pws
+    cd "C:\Users\usuario\carpeta_donde_guardaste_el_repo\E2\web\crm\certs"
+  ```
+- Correr las siguientes lienas en terminal para poder crear todos los certificados
+  **Generar una llave privada para la Autoridad Certificadora (CA):**
+  
+  ```
+  openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:4096 -out ca.key
+  ```
+  **Generar el certificado raíz para la CA:**
+  
+  ```
+  openssl req -x509 -new -nodes -key ca.key -sha256 -days 365 -out ca.crt
+  ```
+  **Generar una llave privada para tu servidor:**
+  
+  ```
+  openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:4096 -out server.key
+  ```
+  **Crear una Solicitud de Firma de Certificado (CSR) para el servidor:**
+  
+  ```
+  openssl req -new -key server.key -out server.csr
+  ```
+  **Firmar un CSR:**
+  
+  ```
+    	openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 365 -sha256
+  ```
+### Opcion con terminal
+
+- Ingresa a la carpeta certs desde gitbash ubicada en `E2\web\crm\certs`
+- Correr la sigueinte linea para crear archivos
+  
+  ```gitbash
+  chmod +x crear_certs.sh
+  ```
+- Correr la sigueinte linea para crear los certifiados
+  ```gitbash
+  ./crear_certs.sh
+  ```
+---
+## Instalar las dependencias de node
+> [!WARNING]
+> Se necesita tener [Node js](https://nodejs.org/en/) para poder correr la pagina.
+
+5. Añadir las dependencias del sistema
+
+- En la capeta `crm` ubicada en `E2\web\crm` correr la siguinte linea de codigo
+  
+  ```
+  npm install
+  ```
+- Entrar en la capeta `frontend` ubicada en `E2\web\crm\frontend` correr la siguinte linea de codigo
+  
+  ```
+  npm install
+  ```
+- Entrar en la capeta `backend` ubicada en `E2\web\crm\backedn` correr la siguinte linea de codigo
+  
+  ```
+  npm install
+  ```
+> [!TIP]
+> Una vez que ya instalaste todas las dependencias en caso de querer agregar una o actualizar las que tienes pudes usar desde la carpeta `crm`
+> ```
+> npm run act
+> ```
+---
+6. Ya puedes correr la pagina
+   
+     ```
+    npm start
+     ```
 
 
 
