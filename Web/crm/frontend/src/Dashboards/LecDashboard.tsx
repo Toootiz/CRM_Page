@@ -57,6 +57,12 @@ const LecDashboard: React.FC<ListProps> = (props) => {
         }
     };
 
+    const handleKeyPress = (event: { key: string; }) => {
+        if (event.key === 'Enter') {
+            handleDonation(); 
+        }
+    };
+
     return (
         <div>
             {!showDonationForm ? (
@@ -123,6 +129,7 @@ const LecDashboard: React.FC<ListProps> = (props) => {
                             label="Cantidad a donar"
                             value={donationAmount}
                             onChange={(e) => setDonationAmount(e.target.value)}
+                            onKeyPress={handleKeyPress}
                             fullWidth
                             InputProps={{
                                 disableUnderline: true,

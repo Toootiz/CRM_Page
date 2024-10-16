@@ -45,6 +45,12 @@ const DonationsPage = () => {
         navigate('/');
     }
 
+    const handleKeyPress = (event: { key: string; }) => {
+        if (event.key === 'Enter') {
+            handleDonation(); 
+        }
+    };
+
     return (
         <div id="donations-body">
             <IconButton
@@ -126,6 +132,7 @@ const DonationsPage = () => {
                         label="Cantidad a donar"
                         value={donationAmount}
                         onChange={(e) => setDonationAmount(e.target.value)}
+                        onKeyPress={handleKeyPress}
                         fullWidth
                         InputProps={{
                             disableUnderline: true,

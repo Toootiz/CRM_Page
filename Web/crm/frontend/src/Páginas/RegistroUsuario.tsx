@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TextField, Button, IconButton, Select, MenuItem, InputLabel, FormControl  } from '@mui/material';
+import { TextField, Button, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
@@ -43,6 +43,12 @@ const UserRegister = () => {
     const handleGoBack = () => {
         navigate('/');
     }
+
+    const handleKeyPress = (event: { key: string; }) => {
+        if (event.key === 'Enter') {
+            handleRegister(); 
+        }
+    };
 
     return (
         <div id="login-body">
@@ -149,7 +155,8 @@ const UserRegister = () => {
                             label="Contraseña"
                             type="password"
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)} 
+                            onChange={(e) => setPassword(e.target.value)}
+                            onKeyPress={handleKeyPress} 
                             fullWidth
                             InputProps={{
                                 disableUnderline: true,
