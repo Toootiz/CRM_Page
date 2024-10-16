@@ -15,7 +15,7 @@
 
 Para cargar la base de datos en su instancia local deberán correr la siguiente linea en la terminal **"mongorestore --db SandersDB"** ruta del archivo de la base de datos volcada en el repo"
 
-> **La línea de codigo debe ser algo similar:**
+> **La línea de código debe ser algo similar:**
   ```bash
     mongorestore --db SandersDB "C:\Users\usuario\carpeta_donde_guardaste el repo\CRM_Page\web\crm\"
   ```
