@@ -57,10 +57,10 @@ El sistema cuenta con todas las funcionalidades CRUD (Crear, Leer, Actualizar, E
 ---
 ## Equipo
 
-- [Jose Antonio](https://github.com/JoseGlezMtz)
-- [Rodrigo Sosa](https://github.com/RoSosaTEC)
-- [Luis Daniel](https://github.com/luisda25)
-- [Gabriel Muñoz](https://github.com/Toootiz)
+- [Jose Antonio González Martínez](https://github.com/JoseGlezMtz)
+- [Rodrigo Sosa Rojas](https://github.com/RoSosaTEC)
+- [Luis Daniel Filorio Luna](https://github.com/luisda25)
+- [Gabriel Muñoz Luna](https://github.com/Toootiz)
 
 ---
 ## Tecnologías Utilizadas
