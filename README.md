@@ -10,7 +10,10 @@ El sistema cuenta con todas las funcionalidades CRUD (Crear, Leer, Actualizar, E
 <img title="Main Page" src="https://i.imgur.com/HJClhw9.png">
 
 ---
+## Manual de usuario
 
+--> [Aquí puedes revisar el manual de usuario](Web/Manual%20de%20Usuario.pdf) <--
+---
 ## Instalación 
 
 > [!NOTE]
