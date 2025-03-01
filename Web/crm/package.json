@@ -19,7 +19,7 @@
         "ra-data-simple-rest": "^5.2.0",
         "react-chartjs-2": "^5.2.0",
         "react-toastify": "^10.0.5",
-        "recharts": "^2.12.7"
+        "recharts": "^2.15.1"
     },
     "devDependencies": {
         "concurrently": "^8.2.2"
