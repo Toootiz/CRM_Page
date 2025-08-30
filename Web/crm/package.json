@@ -13,7 +13,7 @@
         "axios": "^1.7.7",
         "concurrent": "^0.3.2",
         "date-fns": "^4.1.0",
-        "framer-motion": "^11.9.0",
+        "framer-motion": "^11.18.2",
         "moment-timezone": "^0.5.45",
         "nodemailer": "^6.9.15",
         "ra-data-simple-rest": "^5.2.0",
